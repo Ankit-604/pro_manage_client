@@ -3,7 +3,8 @@ import axios from "axios";
 
 const backendUrl =
   import.meta.env.VITE_BACKEND_URL ||
-  "https://pro-manage-server-0yf7.onrender.com";
+  "pro-manage-server-ten.vercel.app
+";
 console.log(import.meta.env.VITE_BACKEND_URL);
 
 // Async thunk to fetch tasks
