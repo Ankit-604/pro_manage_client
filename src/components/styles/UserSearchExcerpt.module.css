@@ -1,0 +1,25 @@
+.userSearchExcerpt__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 20px 5px 20px;
+  height: 28px;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.userSearchExcerpt__container > .user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+.user__avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #ffebeb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

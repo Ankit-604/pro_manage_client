@@ -1,0 +1,36 @@
+.input__container {
+  position: relative;
+}
+
+.input__container > span {
+  position: absolute;
+  height: 100%;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input__icon__password {
+  right: 2%;
+  top: 0;
+}
+.input__icon__password > img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.input__icon {
+  z-index: 0;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: 12px;
+  left: 2px;
+  margin-left: 10px;
+}
+
+.input__icon > img {
+  width: 30px;
+  height: 30px;
+}

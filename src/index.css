@@ -1,0 +1,45 @@
+* {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+  /* scrollbar-width: thin;
+  scrollbar-color: #8daab9cc transparent; */
+}
+
+*::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+  height: 5px; /* Height of the scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent; /* Background of the scrollbar track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #8daab9cc; /* Color of the scrollbar */
+  border-radius: 10px; /* Rounded corners for the scrollbar */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+  background-color: #7a9b8f; /* Color of the scrollbar on hover */
+}
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+}
+
+input[type="password"]::-ms-reveal {
+  display: none;
+}
+
+input[type="password"]::-ms-clear {
+  display: none;
+}

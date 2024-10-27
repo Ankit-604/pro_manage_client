@@ -1,0 +1,76 @@
+.setting__container .container {
+  padding-top: 50px;
+  padding-left: 20px;
+  width: 493px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.setting__container .container form,
+.form_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 493px;
+}
+
+.setting__container .container form input {
+  width: 100%;
+  height: 55px;
+  box-sizing: border-box;
+  padding: 15px 50px;
+  gap: 0px;
+  border-radius: 11px;
+  border: 1.38px solid #d0d0d0;
+  opacity: 0px;
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.setting__container .container button,
+.setting__container .container a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  height: 55px;
+  border-radius: 55px;
+  font-size: 18px;
+  font-weight: 450;
+  width: 100%;
+}
+
+.setting__container .container form button {
+  border: none;
+  background-color: #17a2b8;
+  color: white;
+}
+
+.setting__container .container .btn {
+  color: black;
+  border: 2px solid #17a2b8;
+}
+
+button:hover {
+  opacity: 1;
+  cursor: pointer;
+  opacity: 0.9;
+}
+.setting__container .container .btn:hover {
+  background-color: rgb(230, 223, 223);
+}
+
+.setting__container .container form .error_msg {
+  color: red;
+  font-size: 13px;
+  height: 22px;
+  padding: 1px 10px 2px;
+  font-weight: 450;
+}
+
+.setting__container .container form input:focus {
+  outline: none;
+  border: 1.38px solid #17a2b8;
+}
