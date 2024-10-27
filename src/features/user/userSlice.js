@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://pro-manage-server-0yf7.onrender.com";
 
 const initialState = {
   user: null,
