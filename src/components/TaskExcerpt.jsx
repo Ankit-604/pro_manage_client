@@ -198,7 +198,7 @@ const TaskExcerpt = ({
         <div>
           {task.dueDate && (
             <span
-              className={`taskExcerpt__bottom__date ${
+              className={`${TaskExcerptStyles.taskExcerpt__bottom__date} ${
                 task.status === "done"
                   ? TaskExcerptStyles.taskExcerpt__bottom__date__done
                   : formatLocalDate(task.dueDate) <

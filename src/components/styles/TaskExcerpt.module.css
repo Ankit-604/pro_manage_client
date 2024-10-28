@@ -207,24 +207,9 @@
 .taskExcerpt__bottom__date__high {
   background-color: #cf3636 !important;
   color: #ffffff;
-  font-size: 8px;
-  font-weight: 500;
-  line-height: 12px;
-  background-color: #eeecec;
-  width: fit-content;
-  padding: 4px 6px;
-  border-radius: 8px;
-  margin-left: 8px;
 }
 
 .taskExcerpt__bottom__date__done {
   background-color: #00ff00 !important;
-  font-size: 8px;
-  font-weight: 500;
-  line-height: 12px;
-  background-color: #eeecec;
-  width: fit-content;
-  padding: 4px 6px;
-  border-radius: 8px;
-  margin-left: 8px;
+  color: #ffffff;
 }
