@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL;
 
 const initialState = {
   user: null,
