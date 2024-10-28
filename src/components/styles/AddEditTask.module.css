@@ -1,4 +1,4 @@
-.addTask__container {
+.addTaskContainer {
   position: absolute;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@
   font-weight: 500;
 }
 
-.addTask__box {
+.addTaskBox {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -27,14 +27,14 @@
 .required {
   color: red;
 }
-.addTask__box__title {
+.addTaskBoxTitle {
   display: flex;
   flex-direction: column;
   justify-content: start;
   gap: 6px;
 }
 
-.addTask__box__title > input {
+.addTaskBoxTitle > input {
   width: 100%;
   height: 35px;
   box-sizing: border-box;
@@ -42,18 +42,18 @@
   border-radius: 8px;
 }
 
-.addTask__box__priority {
+.addTaskBoxPriority {
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
 }
-.addTask__priority__button__container {
+.addTaskPriorityButtonContainer {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
-.addTask__priority__button {
+.addTaskPriorityButton {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,19 +67,19 @@
   border: 1px solid #d0d0d0;
   background-color: transparent;
 }
-.addTask__priority__color {
+.addTaskPriorityColor {
   height: 10px;
   width: 10px;
   border-radius: 100%;
 }
 
-.addTask__box__assignee {
+.addTaskBoxAssignee {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 15px 0 10px 0;
 }
-.addTask__box__assignee__container {
+.addTaskBoxAssigneeContainer {
   position: relative;
   width: 100%;
   height: 30px;
@@ -87,17 +87,17 @@
   padding-right: 4px;
 }
 
-.addTask__box__assignee__container {
+.addTaskBoxAssigneeContainer {
   width: 100%;
   height: 100%;
 }
 
-.assignee__container__input {
+.assigneeContainerInput {
   width: 100%;
   height: 100%;
 }
 
-.assignee__container__input > input {
+.assigneeContainerInput > input {
   position: relative;
   width: 100%;
   height: 100%;
@@ -106,7 +106,7 @@
   box-sizing: border-box;
   padding: 8px;
 }
-.assignee__container__input > button {
+.assigneeContainerInput > button {
   position: absolute;
   background-color: transparent;
   right: 10px;
@@ -116,12 +116,12 @@
   width: 30px;
 }
 
-.assignee__container__input > button > img {
+.assigneeContainerInput > button > img {
   width: 100%;
   height: 100%;
 }
 
-.assignee__container {
+.assigneeContainer {
   position: absolute;
   z-index: 10;
   top: 40px;
@@ -138,7 +138,7 @@
   margin-right: 4px;
 }
 
-.assignee__search__user {
+.assigneeSearchUser {
   display: flex;
   border-radius: 7px;
   margin: 2px 4px 2px 4px;
@@ -146,26 +146,26 @@
   align-items: center;
   padding-right: 25px;
 }
-.assignee__search__user:hover {
+.assigneeSearchUser:hover {
   background-color: #f5f5f5;
 }
-.assignee__search__user > button {
+.assigneeSearchUser > button {
   background-color: transparent;
   color: #17a2b8;
   border: 1px solid #17a2b8;
   border-radius: 7px;
   padding: 3px 25px;
 }
-.assignee__search__user > button:disabled {
+.assigneeSearchUser > button:disabled {
   color: #767575 !important;
   border-color: #767575 !important;
 }
-.assignee__search__user > button:hover {
+.assigneeSearchUser > button:hover {
   color: #17a2b8;
   border-color: #17a2b8;
 }
 /* from here onwards, styles for checklist */
-.addTask__box__checklist {
+.addTaskBoxChecklist {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -175,7 +175,7 @@
   overflow: hidden;
 }
 
-.addTask__box__checklist__container {
+.addTaskBoxChecklistContainer {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -192,14 +192,14 @@
   gap: 10px;
 }
 
-.checklist__item {
+.checklistItems {
   position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.checklist__item > input[type="text"] {
+.checklistItems > input[type="text"] {
   height: 35px;
   flex-grow: 1;
   box-sizing: border-box;
@@ -208,12 +208,12 @@
   border-radius: 8px;
   border: 1px solid #d0d0d0;
 }
-.checklist__item > input[type="checkbox"] {
+.checklistItems > input[type="checkbox"] {
   position: absolute;
   left: 10px;
 }
 
-.delete__icon {
+.deleteIcon {
   position: absolute;
   right: 7px;
   top: 8px;
@@ -222,7 +222,7 @@
   cursor: pointer;
 }
 
-.delete__icon img {
+.deleteIcon img {
   width: 20px;
   height: 20px;
 }
@@ -238,7 +238,7 @@
   font-size: 14px;
 }
 /* ends here */
-.addTask__box__bottom {
+.addTaskBoxBottom {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -247,14 +247,14 @@
   padding: 10px;
   height: 50px;
 }
-.addTask__bottom__button {
+.aaddTaskBottomButton {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
-.addTask__bottom__button > button,
-.addTask__bottom__dueDate {
+.aaddTaskBottomButton > button,
+.addTaskBottomDueDate {
   border-radius: 12px;
   height: 36px;
   width: 130px;
@@ -264,7 +264,7 @@
   text-align: center;
 }
 
-.addTask__bottom__dueDate {
+.addTaskBottomDueDate {
   width: 150px;
   background-color: transparent;
   border-radius: 12px;
@@ -272,18 +272,18 @@
   opacity: 0px;
 }
 
-.addTask__bottom__button__cancel {
+.addTaskBottomButtonCancel {
   background-color: transparent;
   border: red 2px solid;
   color: red;
 }
 
-.addTask__bottom__button__save {
+.addTaskBottomButtonSave {
   color: white;
   background-color: #17a2b8;
   border: none;
 }
 
-input.task__error {
+input.taskError {
   border-color: red !important;
 }

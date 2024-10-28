@@ -1,11 +1,14 @@
 .setting__container .container {
   padding-top: 50px;
-  padding-left: 20px;
   width: 493px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.setting__container {
+  margin-left: 25px;
+  margin-top: 25px;
 }
 
 .setting__container .container form,
@@ -14,6 +17,7 @@
   flex-direction: column;
   justify-content: center;
   width: 493px;
+  gap: 20px;
 }
 
 .setting__container .container form input {

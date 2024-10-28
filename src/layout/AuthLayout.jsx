@@ -8,13 +8,13 @@ const AuthLayout = ({ children }) => {
   }
   return (
     <div className={AuthLayoutStyles.AuthLayout}>
-      <div className={AuthLayoutStyles.side_content}>
-        <span className={AuthLayoutStyles.background_circle} />
+      <div className={AuthLayoutStyles.sideContent}>
+        <span className={AuthLayoutStyles.backgroundCircle} />
         <img src={Art} alt="logo" />
         <p>Welcome aboard my friend</p>
         <span>just a couple of clicks and we start</span>
       </div>
-      <div className={AuthLayoutStyles.main_layout}>{children}</div>
+      <div className={AuthLayoutStyles.mainLayout}>{children}</div>
     </div>
   );
 };

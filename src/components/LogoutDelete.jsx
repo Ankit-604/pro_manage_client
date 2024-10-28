@@ -3,17 +3,17 @@ import LogoutStyles from "./styles/Logout.module.css";
 
 const Logout = ({ loading = false, handleSubmit, type, setShow }) => {
   return (
-    <div className={LogoutStyles.logout__container}>
-      <div className={LogoutStyles.logout__content}>
+    <div className={LogoutStyles.logoutContainer}>
+      <div className={LogoutStyles.logoutContent}>
         <button
-          className={LogoutStyles.logout__button}
+          className={LogoutStyles.logoutButton}
           onClick={() => handleSubmit()}
           disabled={loading}
         >
           {loading ? <Loading /> : `Yes, ${type}`}
         </button>
         <button
-          className={LogoutStyles.cancel__logout}
+          className={LogoutStyles.cancelLogout}
           onClick={() => setShow(false)}
         >
           {" "}

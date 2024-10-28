@@ -1,4 +1,4 @@
-.protected_route {
+.protectedRoute {
   position: relative;
   display: grid;
   grid-template-columns: 200px 1fr;
@@ -13,20 +13,20 @@
   border-right: 1px solid #afe8f1;
 }
 
-.sidebar .app__logo {
+.sidebar .appLogo {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 32px 0px;
 }
 
-.app__logo span {
+.appLogo span {
   font-family: Poppins, sans-serif;
   font-size: 16px;
   font-weight: 700;
 }
 
-.sidebar > .links__container {
+.sidebar > .linksContainer {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -38,14 +38,14 @@
   font-size: 16px;
   font-weight: 500;
 }
-.sidebar > .links__container > .links {
+.sidebar > .linksContainer > .links {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 10px;
 }
 
-.sidebar > .links__container > .links > a {
+.sidebar > .linksContainer > .links > a {
   display: flex;
   align-items: center;
   padding-left: 40px;
@@ -55,15 +55,15 @@
   height: 40px;
   width: 100%;
 }
-.sidebar > .links__container > .links > a:hover {
+.sidebar > .linksContainer > .links > a:hover {
   background: #4391ed1a;
 }
-.sidebar > .links__container > .links > .active-link {
+.sidebar > .linksContainer > .links > .active-link {
   color: black;
   background: #4391ed1a;
 }
 
-.sidebar > .links__container > button {
+.sidebar > .linksContainer > button {
   color: red;
   font-size: 16px;
   font-weight: 500;
@@ -72,11 +72,11 @@
   gap: 10px;
   background-color: transparent;
 }
-.sidebar > .links__container > button:hover {
+.sidebar > .linksContainer > button:hover {
   color: rgb(244, 57, 57);
 }
 
-.main__content {
+.mainContent {
   padding: 26px 0 0 26px;
   height: 100%;
   overflow-x: auto;

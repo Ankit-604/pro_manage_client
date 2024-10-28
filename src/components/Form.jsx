@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import profile from "../assets/svg/profile.svg";
 import message from "../assets/svg/message.svg";
 import lock from "../assets/svg/lock.svg";
+
 const Form = ({
   formError,
   formFields,
@@ -40,8 +41,8 @@ const Form = ({
     <form onSubmit={handleSubmit}>
       {formFields.map((field, index) => (
         <div className={AuthLayoutStyles.form_container} key={index}>
-          <span className={FormStyles.input__container}>
-            <label htmlFor={field.name} className={FormStyles.input__icon}>
+          <span className={FormStyles.inputContainer}>
+            <label htmlFor={field.name} className={FormStyles.inputIcon}>
               <img src={inputIcons[field.type]} alt={field.name} />
             </label>
             <input
@@ -59,8 +60,7 @@ const Form = ({
             />
 
             {field.type === "password" && (
-              <span className={FormStyles.input__icon__password}>
-                {/* dont want user to use keyboard to show and hide password */}
+              <span className={FormStyles.inputIconPassword}>
                 <img
                   onClick={() => togglePasswordVisibility(field.name)}
                   src={showPassword[field.name] ? eyeOff : eye}

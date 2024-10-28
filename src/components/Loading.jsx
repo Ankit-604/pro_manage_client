@@ -21,7 +21,7 @@ const Loading = () => {
             fill="currentColor"
           />
         </svg>
-        <span className={LoadingStyles.sr_only}>Loading...</span>
+        <span className={LoadingStyles.sr}>Loading...</span>
       </div>
     </div>
   );

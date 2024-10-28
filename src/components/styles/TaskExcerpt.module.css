@@ -1,4 +1,4 @@
-.taskExcerpt__container {
+.taskExcerptContainer {
   position: relative;
   width: 100%;
   background-color: #ffffff;
@@ -9,12 +9,12 @@
   padding: 12px;
 }
 
-.taskExcerpt__top {
+.taskExcerptTop {
   display: flex;
   justify-content: space-between;
 }
 
-.taskExcerpt__priority {
+.taskExcerptPriority {
   display: flex;
   gap: 4px;
   align-items: center;
@@ -23,19 +23,19 @@
   text-align: left;
 }
 
-.taskExcerpt__priority__color {
+.taskExcerptPriorityColor {
   border-radius: 100%;
   height: 7px;
   width: 7px;
 }
 
-.taskExcerpt__top__options > button {
+.taskExcerptTopOptions > button {
   background-color: transparent;
   border: none;
   position: relative;
 }
 
-.taskExcerpt__top__options__dropdown {
+.taskExcerptTopOptionsDropdown {
   z-index: 5;
   position: absolute;
   right: 8px;
@@ -51,7 +51,7 @@
   border-radius: 8px;
 }
 
-.taskExcerpt__top__options__dropdown > button {
+.taskExcerptTopOptionsDropdown > button {
   width: 100%;
   height: 100%;
   border: none;
@@ -63,15 +63,15 @@
   padding-left: 4px;
   border-radius: 4px;
 }
-.taskExcerpt__top__options__dropdown > button:hover {
+.taskExcerptTopOptionsDropdown > button:hover {
   background-color: #f5f5f5;
 }
 
-.delete__task__button {
+.deleteTaskButton {
   color: #ff0000;
 }
 
-.taskExcerpt__header {
+.taskExcerptHeader {
   font-size: 16px;
   font-weight: 600;
   margin: 8px 0;
@@ -81,7 +81,7 @@
   transition: white-space 0.2s ease;
 }
 
-.taskExcerpt__user__avatar {
+.taskExcerptUserAvatar {
   font-size: 8px;
   height: 17px;
   width: 17px;
@@ -92,7 +92,7 @@
   align-items: center;
 }
 
-.taskExcerpt__checklist__header {
+.taskExcerptChecklistHeader {
   box-sizing: border-box;
   padding: 0px 8px 0px 4px;
   display: flex;
@@ -103,7 +103,7 @@
   text-align: left;
 }
 
-.taskExcerpt__checklist__header > button {
+.taskExcerptChecklistHeader > button {
   background-color: #e2e2e2;
   border: none;
   height: 20px;
@@ -111,16 +111,16 @@
   border-radius: 3px;
 }
 
-.taskExcerpt__checklist__header > button img {
+.taskExcerptChecklistHeader > button img {
   width: 100%;
   height: 100%;
 }
-.taskExcerpt__checklist__items {
+.taskExcerptChecklistItems {
   margin: 8px 0;
   padding: 0px 4px;
   box-sizing: border-box;
 }
-.taskExcerpt__checklist__item {
+.taskExcerptChecklistItem {
   padding: 8px;
   display: flex;
   align-items: center;
@@ -131,12 +131,12 @@
   white-space: normal;
 }
 
-.taskExcerpt__checklist__item input[type="checkbox"] {
+.taskExcerptChecklistItem input[type="checkbox"] {
   width: 17px;
   height: 17px;
   cursor: pointer;
 }
-.taskExcerpt__checklist__item > span {
+.taskExcerptChecklistItem > span {
   display: flex;
   align-items: center;
   height: 100%;
@@ -148,11 +148,11 @@
   text-align: left;
 }
 
-.taskExcerpt__checklist__item input[type="checkbox"]:checked {
+.taskExcerptChecklistItem input[type="checkbox"]:checked {
   accent-color: #17a2b8;
 }
 
-.taskExcerpt__loading {
+.taskExcerptLoading {
   position: absolute;
   top: 0;
   left: 0;
@@ -165,24 +165,24 @@
   z-index: 10;
 }
 
-.taskExcerpt__loading .loader {
+.taskExcerptLoading .loader {
   color: #17a2b8;
 }
 
-.taskExcerpt__bottom {
+.taskExcerptBottom {
   margin-top: 8px;
   display: grid;
   grid-template-columns: 100px 1fr;
 }
 
-.taskExcerpt__button {
+.taskExcerptButton {
   justify-content: end;
   padding-right: 5px;
   display: flex;
   gap: 5px;
   align-items: center;
 }
-.taskExcerpt__button__item {
+.taskExcerptButtonItem {
   text-transform: uppercase;
   background-color: #eeecec;
   padding: 4px 6px;
@@ -193,7 +193,7 @@
   line-height: 12px;
 }
 
-.taskExcerpt__bottom__date {
+.taskExcerptBottomDate {
   font-size: 8px;
   font-weight: 500;
   line-height: 12px;
@@ -204,12 +204,12 @@
   margin-left: 8px;
 }
 
-.taskExcerpt__bottom__date__high {
+.taskExcerptBottomDateHigh {
   background-color: #cf3636 !important;
   color: #ffffff;
 }
 
-.taskExcerpt__bottom__date__done {
-  background-color: #00ff00 !important;
+.taskExcerptBottomDateDone {
+  background-color: #63c05b !important;
   color: #ffffff;
 }

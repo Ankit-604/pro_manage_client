@@ -3,10 +3,10 @@ import NotFoundStyles from "./stylesheets/NotFound.module.css";
 
 const NotFound = () => {
   return (
-    <div className={NotFoundStyles.not_found}>
-      <div className={NotFoundStyles.not_found__container}>
-        <h1 className={NotFoundStyles.not_found__title}>404</h1>
-        <p className={NotFoundStyles.not_found__text}>Page Not Found</p>
+    <div className={NotFoundStyles.notFound}>
+      <div className={NotFoundStyles.notFoundContainer}>
+        <h1 className={NotFoundStyles.notFoundTitle}>404</h1>
+        <p className={NotFoundStyles.notFoundText}>Page Not Found</p>
       </div>
     </div>
   );

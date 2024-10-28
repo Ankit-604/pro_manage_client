@@ -42,43 +42,49 @@ const TaskOverview = () => {
   console.log(task.dueDate);
 
   return (
-    <div className={TaskOverviewStyles.task_overview__container}>
-      <div className={TaskOverviewStyles.task_overview__header}>
+    <div className={TaskOverviewStyles.taskOverviewContainer}>
+      <div className={TaskOverviewStyles.taskOverviewHeader}>
         <img src={codesandbox} alt="logo" />
         <span>Pro Manager</span>
       </div>
 
-      <div className={TaskOverviewStyles.task_overview__main}>
+      <div className={TaskOverviewStyles.taskOverviewMain}>
         {loading ? (
           <Loading />
         ) : (
-          <div className={TaskOverviewStyles.task_overview__main__container}>
-            <div className={TaskOverviewStyles.task_overview__main__container__priority}>
+          <div className={TaskOverviewStyles.taskOverviewMainContainer}>
+            <div
+              className={TaskOverviewStyles.taskOverviewMainContainerPriority}
+            >
               <div
-                className={TaskOverviewStyles.task_overview__main__priority__color}
+                className={TaskOverviewStyles.taskOverviewMainPriorityColor}
                 style={{ backgroundColor: priority?.color }}
               />
               {priority?.name}
             </div>
-            <div className={TaskOverviewStyles.task_overview__main__header}>{task.title}</div>
+            <div className={TaskOverviewStyles.taskOverviewMainHeader}>
+              {task.title}
+            </div>
 
-            <div className={TaskOverviewStyles.task_overview__main__checklist}>
-              <div className={TaskOverviewStyles.task_overview__main__checklist__header}>
+            <div className={TaskOverviewStyles.taskOverviewMainChecklist}>
+              <div
+                className={TaskOverviewStyles.taskOverviewMainChecklistHeader}
+              >
                 <label htmlFor="checklist">
                   Checklist{" "}
                   <span>{`(${checkedItemsCount}/${totalChecklistItems})`}</span>
                 </label>
               </div>
 
-              <div className={TaskOverviewStyles.task_overview__main__checklist__items}>
-                <div
-                  className={TaskExcerptStyles.taskExcerpt__checklist__items}
-                >
+              <div
+                className={TaskOverviewStyles.taskOverviewMainChecklistItems}
+              >
+                <div className={TaskExcerptStyles.taskExcerptChecklistItems}>
                   {task?.checklist?.map((item) => {
                     return (
                       <div
                         key={`${item.itemId},${item.title}`}
-                        className={TaskExcerptStyles.taskExcerpt__checklist__item}
+                        className={TaskExcerptStyles.taskExcerptChecklistItem}
                       >
                         <input type="checkbox" checked={item.checked} />
                         <span>{item.text}</span>
@@ -89,7 +95,7 @@ const TaskOverview = () => {
               </div>
             </div>
             {task?.dueDate && (
-              <div className={TaskOverviewStyles.task_overview__main__dueDate}>
+              <div className={TaskOverviewStyles.taskOverviewMainDueDate}>
                 Due Date
                 <span>{formatLocalDate(task?.dueDate, " MMM dd")}</span>
               </div>

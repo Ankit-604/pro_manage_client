@@ -209,14 +209,14 @@ const AddEditTask = ({
     }
   };
   return (
-    <div className={AddEditTaskStyles.addTask__container}>
-      <div className={AddEditTaskStyles.addTask__box}>
-        <div className={AddEditTaskStyles.addTask__box__title}>
+    <div className={AddEditTaskStyles.addTaskContainer}>
+      <div className={AddEditTaskStyles.addTaskBox}>
+        <div className={AddEditTaskStyles.addTaskBoxTitle}>
           <label htmlFor="title">
             Title <span className={AddEditTaskStyles.required}>*</span>
           </label>
           <input
-            className={formErrors.title ? AddEditTaskStyles.task__error : ""}
+            className={formErrors.title ? AddEditTaskStyles.taskError : ""}
             id="title"
             type="text"
             placeholder="Enter Task Title"
@@ -227,13 +227,11 @@ const AddEditTask = ({
           />
         </div>
 
-        <div className={AddEditTaskStyles.addTask__box__priority}>
+        <div className={AddEditTaskStyles.addTaskBoxPriority}>
           <label htmlFor="priority">
             Priority <span className={AddEditTaskStyles.required}>*</span>
           </label>
-          <div
-            className={AddEditTaskStyles.addTask__priority__button__container}
-          >
+          <div className={AddEditTaskStyles.addTaskPriorityButtonContainer}>
             {priorities.map((priority) => (
               <button
                 key={priority.value}
@@ -248,10 +246,10 @@ const AddEditTask = ({
                     ? { background: "#EEECEC" }
                     : {}
                 }
-                className={AddEditTaskStyles.addTask__priority__button}
+                className={AddEditTaskStyles.addTaskPriorityButton}
               >
                 <div
-                  className={AddEditTaskStyles.addTask__priority__color}
+                  className={AddEditTaskStyles.addTaskPriorityColor}
                   style={{ backgroundColor: priority.color }}
                 ></div>
                 {priority.name}
@@ -260,17 +258,15 @@ const AddEditTask = ({
           </div>
         </div>
 
-        <div className={AddEditTaskStyles.addTask__box__assignee}>
+        <div className={AddEditTaskStyles.addTaskBoxAssignee}>
           <label htmlFor="assignee">Assign to</label>
           {!!task &&
           (task?.assignTo?.includes(user._id) ||
             !task?.createdBy === user._id) ? (
             <UserSearchExcerpt user={user} />
           ) : (
-            <div
-              className={AddEditTaskStyles.addTask__box__assignee__container}
-            >
-              <div className={AddEditTaskStyles.assignee__container__input}>
+            <div className={AddEditTaskStyles.addTaskBoxAssigneeContainer}>
+              <div className={AddEditTaskStyles.assigneeContainerInput}>
                 <input
                   type="text"
                   placeholder="Search for an assignee"
@@ -297,7 +293,7 @@ const AddEditTask = ({
               {showUserList && (
                 <div
                   ref={userListRef}
-                  className={AddEditTaskStyles.assignee__container}
+                  className={AddEditTaskStyles.assigneeContainer}
                 >
                   {searchUserResults.length === 0 &&
                     !loadingUser &&
@@ -314,7 +310,7 @@ const AddEditTask = ({
                     searchUserResults.map((user) => (
                       <div
                         key={user._id}
-                        className={AddEditTaskStyles.assignee__search__user}
+                        className={AddEditTaskStyles.assigneeSearchUser}
                       >
                         <UserSearchExcerpt user={user} />
                         <button
@@ -340,17 +336,17 @@ const AddEditTask = ({
           )}
         </div>
 
-        <div className={AddEditTaskStyles.addTask__box__checklist}>
+        <div className={AddEditTaskStyles.addTaskBoxChecklist}>
           <label htmlFor="checklist">
             Checklist{" "}
             <span>{`(${checkedItemsCount}/${totalChecklistItems})`}</span>
             <span className={AddEditTaskStyles.required}>*</span>
           </label>
-          <div className={AddEditTaskStyles.addTask__box__checklist__container}>
+          <div className={AddEditTaskStyles.addTaskBoxChecklistContainer}>
             <div className={AddEditTaskStyles.checklist__items}>
               {data.checklist.map((item) => (
                 <div
-                  className={AddEditTaskStyles.checklist__item}
+                  className={AddEditTaskStyles.checklistItems}
                   key={item.itemId}
                 >
                   <input
@@ -361,7 +357,7 @@ const AddEditTask = ({
                   <input
                     className={
                       formErrors.checklistItems[item.itemId]
-                        ? AddEditTaskStyles.task__error
+                        ? AddEditTaskStyles.taskError
                         : ""
                     }
                     type="text"
@@ -373,7 +369,7 @@ const AddEditTask = ({
                   />
                   <button
                     onClick={() => handleDeleteItem(item.itemId)}
-                    className={AddEditTaskStyles.delete__icon}
+                    className={AddEditTaskStyles.deleteIcon}
                   >
                     <img src={deleteIcon} alt="delete-icon" />
                   </button>
@@ -384,12 +380,12 @@ const AddEditTask = ({
           </div>
         </div>
 
-        <div className={AddEditTaskStyles.addTask__box__bottom}>
+        <div className={AddEditTaskStyles.addTaskBoxBottom}>
           {showDatePicker && (
             <Calendar selectedDate={data.dueDate} onChange={handleDateChange} />
           )}
           <button
-            className={AddEditTaskStyles.addTask__bottom__dueDate}
+            className={AddEditTaskStyles.addTaskBottomDueDate}
             onClick={() => setShowDatePicker(!showDatePicker)}
           >
             {data.dueDate
@@ -397,9 +393,9 @@ const AddEditTask = ({
               : "Select Due Date"}
           </button>
 
-          <div className={AddEditTaskStyles.addTask__bottom__button}>
+          <div className={AddEditTaskStyles.aaddTaskBottomButton}>
             <button
-              className={AddEditTaskStyles.addTask__bottom__button__cancel}
+              className={AddEditTaskStyles.addTaskBottomButtonCancel}
               onClick={() => setIsShown(false)}
             >
               Cancel
@@ -409,7 +405,7 @@ const AddEditTask = ({
               onClick={(e) => {
                 handleSubmitForm(e);
               }}
-              className={AddEditTaskStyles.addTask__bottom__button__save}
+              className={AddEditTaskStyles.addTaskBottomButtonSave}
             >
               {loading ? <Loading /> : "Save"}
             </button>

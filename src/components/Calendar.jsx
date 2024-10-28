@@ -6,8 +6,14 @@ import { formatLocalDate } from "../utils";
 
 const Calendar = ({ selectedDate, onChange }) => {
   return (
-    <div className={CalendarStyles.my__calendar}>
+    <div className={CalendarStyles.myCalendar}>
       <MyCalendar
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: "transparent",
+          border: "none",
+        }}
         onChange={onChange}
         tileClassName={({ date, view }) => {
           if (view === "month" && selectedDate) {
@@ -20,7 +26,15 @@ const Calendar = ({ selectedDate, onChange }) => {
         value={selectedDate}
         minDate={new Date()}
       />
-      <div className={CalendarStyles.my__calendar__buttons}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "0 15px 5px 15px",
+        }}
+        className={CalendarStyles.myCalendarButtons}
+      >
         <button onClick={() => onChange()}>clear</button>{" "}
         <button onClick={() => onChange(new Date())}>today</button>
       </div>

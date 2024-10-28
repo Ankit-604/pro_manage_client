@@ -13,7 +13,7 @@ const Analytics = () => {
     },
     priority: {
       "Low Priority": tasks.filter((task) => task.priority === "low").length,
-      "Medium Priority": tasks.filter((task) => task.priority === "moderate")
+      "Moderate Priority": tasks.filter((task) => task.priority === "moderate")
         .length,
       "High Priority": tasks.filter((task) => task.priority === "high").length,
       "Due Date Tasks": tasks.filter((task) => !task.dueDate).length,
@@ -21,24 +21,22 @@ const Analytics = () => {
   };
 
   return (
-    <div className={AnalyticsStyles.analytics__container}>
-      <div className={AnalyticsStyles.analytics__container__header}></div>
+    <div className={AnalyticsStyles.analyticsContainer}>
+      <div className={AnalyticsStyles.analyticsContainerHeader}>Analytics</div>
 
-      <div className={AnalyticsStyles.analytics__main}>
+      <div className={AnalyticsStyles.analyticsMain}>
         {Object.keys(analytics).map((key) => {
           return (
-            <div key={key} className={AnalyticsStyles.analytics__main__section}>
+            <div key={key} className={AnalyticsStyles.analyticsMainSection}>
               {Object.keys(analytics[key]).map((item) => {
                 return (
                   <div
-                    className={AnalyticsStyles.analytics__main__item__container}
+                    className={AnalyticsStyles.analyticsMainItemContainer}
                     key={item}
                   >
-                    <div className={AnalyticsStyles.analytics__main__item}>
+                    <div className={AnalyticsStyles.analyticsMainItem}>
                       {" "}
-                      <div
-                        className={AnalyticsStyles.analytics__main__item__color}
-                      />
+                      <div className={AnalyticsStyles.analyticsMainItemColor} />
                       {item}
                     </div>
                     <span>{String(analytics[key][item]).padStart(2, "0")}</span>

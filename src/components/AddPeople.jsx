@@ -74,12 +74,19 @@ const AddPeople = ({ setShow }) => {
   const handleAddPeople = async (userEmail) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!userEmail || !emailRegex.test(userEmail)) {
+      console.log("Invalid email:", userEmail);
       return toast.error("Please enter a valid email");
     }
+
     setSuccess(false);
     setLoading(true); // Add loading state
+
+    console.log("Sending email:", userEmail); // Log the email being sent
     const result = await dispatch(addPeople({ userEmail }));
     setLoading(false); // Stop loading state
+
+    console.log("Dispatch result:", result); // Log the response from the dispatch
+
     if (result.type === "task/addPeople/fulfilled") {
       setSuccess(true);
       toast.success("User added successfully");
@@ -89,15 +96,15 @@ const AddPeople = ({ setShow }) => {
   };
 
   return (
-    <div className={AddPeopleStyles.add_people}>
+    <div className={AddPeopleStyles.addPeople}>
       {/* {!loading && ( */}
-      <div className={AddPeopleStyles.add_people__container}>
+      <div className={AddPeopleStyles.addPeopleContainer}>
         {!success ? (
           <>
-            <div className={AddPeopleStyles.add_people__container__header}>
+            <div className={AddPeopleStyles.addPeopleContainerHeader}>
               Add people to the board
             </div>
-            <div className={AddPeopleStyles.add_people__input__Container}>
+            <div className={AddPeopleStyles.addPeopleInputContainer}>
               <input
                 value={search}
                 onChange={(e) => {
@@ -106,7 +113,7 @@ const AddPeople = ({ setShow }) => {
                   }
                   setSearch(e.target.value);
                 }}
-                className={AddPeopleStyles.add_people__input}
+                className={AddPeopleStyles.addPeopleInput}
                 type="email"
                 placeholder="Enter the email"
               />
@@ -128,7 +135,7 @@ const AddPeople = ({ setShow }) => {
               {showUserList && (
                 <div
                   ref={userListRef}
-                  className={AddPeopleStyles.add_people__list__container}
+                  className={AddPeopleStyles.addPeopleListContainer}
                 >
                   {searchUserResults.length === 0 &&
                     !loadingUser &&
@@ -145,25 +152,16 @@ const AddPeople = ({ setShow }) => {
                     searchUserResults.map((user) => (
                       <div
                         key={user._id}
-                        className={AddPeopleStyles.add_people__list__item}
+                        className={AddPeopleStyles.addPeopleListItem}
                       >
-                        {/* {console.log(
-                          user.email,
-                          userEmail,
-                          userEmail === user.email
-                        )} */}
                         <div
-                          className={
-                            AddPeopleStyles.add_people__list__item__avatar
-                          }
+                          className={AddPeopleStyles.addPeopleListItemAvatar}
                         >
                           <UserSearchExcerpt user={user} />
                         </div>
 
                         <div
-                          className={
-                            AddPeopleStyles.add_people__list__item__buttons
-                          }
+                          className={AddPeopleStyles.addPeopleListItemButtons}
                         >
                           <button
                             disabled={user.email === userEmail}
@@ -181,31 +179,29 @@ const AddPeople = ({ setShow }) => {
                 </div>
               )}
             </div>
-            <div className={AddPeopleStyles.add_people__container__buttons}>
+            <div className={AddPeopleStyles.addPeopleContainerButtons}>
               <button
                 onClick={() => setShow(false)}
-                className={
-                  AddPeopleStyles.add_people__container__buttons__cancel
-                }
+                className={AddPeopleStyles.addPeopleContainerButtonsCancel}
               >
                 Cancel
               </button>
               <button
                 disabled={loading}
                 onClick={() => handleAddPeople(userEmail)}
-                className={AddPeopleStyles.add_people__container__buttons__add}
+                className={AddPeopleStyles.addPeopleContainerButtonsAdd}
               >
                 Add Email
               </button>
             </div>
           </>
         ) : (
-          <div className={AddPeopleStyles.add_people__success}>
+          <div className={AddPeopleStyles.addPeopleSuccess}>
             {userEmail} added to Board
-            <div className={AddPeopleStyles.add_people__container__buttons}>
+            <div className={AddPeopleStyles.addPeopleContainerButtons}>
               <button
                 onClick={() => setShow(false)}
-                className=" add_people__container__buttons__add"
+                className=" addPeopleContainerButtonsAdd"
               >
                 {" "}
                 Okay, got it!
@@ -214,7 +210,6 @@ const AddPeople = ({ setShow }) => {
           </div>
         )}
       </div>
-      {/* )} */}
     </div>
   );
 };

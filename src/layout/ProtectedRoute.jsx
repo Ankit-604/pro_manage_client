@@ -37,15 +37,15 @@ const ProtectedRoute = ({ children }) => {
   }, [taskRange]);
 
   return (
-    <div className={ProtectedRouteModuleStyles.protected_route}>
+    <div className={ProtectedRouteModuleStyles.protectedRoute}>
       <section className={ProtectedRouteModuleStyles.sidebar}>
-        <div className={ProtectedRouteModuleStyles.app__logo}>
+        <div className={ProtectedRouteModuleStyles.appLogo}>
           <img src={codesandbox} alt="logo" />
-          <span className={ProtectedRouteModuleStyles.app__logo}>
+          <span className={ProtectedRouteModuleStyles.appLogo}>
             Pro Manager
           </span>
         </div>
-        <div className={ProtectedRouteModuleStyles.links__container}>
+        <div className={ProtectedRouteModuleStyles.linksContainer}>
           <div className={ProtectedRouteModuleStyles.links}>
             <NavLink
               to="/"
@@ -79,7 +79,7 @@ const ProtectedRoute = ({ children }) => {
           </button>
         </div>
       </section>
-      <section className="main__content">{children}</section>
+      <section className="mainContent">{children}</section>
 
       {showLogout && (
         <Logout

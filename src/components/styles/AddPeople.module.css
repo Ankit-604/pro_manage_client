@@ -1,4 +1,4 @@
-.add_people {
+.addPeople {
   z-index: 20;
   position: absolute;
   top: 0;
@@ -12,7 +12,7 @@
   min-width: fit-content;
 }
 
-.add_people__container {
+.addPeopleContainer {
   width: 600px;
   height: 250px;
   border-radius: 10px;
@@ -27,7 +27,7 @@
   gap: 20px;
 }
 
-.add_people__container__header {
+.addPeopleContainerHeader {
   padding-left: 10px;
   font-size: 20px;
   font-weight: 600;
@@ -35,13 +35,13 @@
   text-align: left;
 }
 
-.add_people__input__Container {
+.addPeopleInputContainer {
   width: 100%;
   height: 35px;
   position: relative;
 }
 
-.add_people__input {
+.addPeopleInput {
   width: 100%;
   box-sizing: border-box;
   padding: 12px;
@@ -53,12 +53,12 @@
   opacity: 0px;
   border: 1px solid #767575;
 }
-.add_people__input:focus {
+.addPeopleInput:focus {
   outline: none;
   border: 1px solid #17a2b8;
 }
 
-.add_people__input__Container > button {
+.addPeopleInputContainer > button {
   position: absolute;
   background-color: transparent;
   right: 10px;
@@ -69,17 +69,17 @@
   top: 8px;
 }
 
-.add_people__input__Container > button > img {
+.addPeopleInputContainer > button > img {
   width: 100%;
   height: 100%;
 }
-.add_people__container__buttons {
+.addPeopleContainerButtons {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.add_people__list__container {
+.addPeopleListContainer {
   z-index: 10;
   margin-top: 10px;
   position: absolute;
@@ -92,7 +92,7 @@
   padding: 10px;
 }
 
-.add_people__list__item {
+.addPeopleListItem {
   display: grid;
   grid-template-columns: 2fr 1fr;
   width: 100%;
@@ -100,22 +100,22 @@
   box-sizing: border-box;
 }
 
-.add_people__list__item__avatar {
+.addPeopleListItemAvatar {
   display: flex;
   align-items: center;
 }
 
-.add_people__list__item__avatar > .userSearchExcerpt__container .user__avatar {
+.addPeopleListItemAvatar > .userSearchExcerpt__container .user__avatar {
   font-size: 10px;
   font-weight: 600;
 }
-.add_people__list__item__buttons {
+.addPeopleListItemButtons {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.add_people__list__item__buttons > button {
+.addPeopleListItemButtons > button {
   background-color: transparent;
   color: #17a2b8;
   border: 1px solid #17a2b8;
@@ -123,11 +123,11 @@
   padding: 3px 25px;
 }
 
-.add_people__list__item__buttons > button:disabled {
+.addPeopleListItemButtons > button:disabled {
   color: #767575 !important;
   border-color: #767575 !important;
 }
-.add_people__container__buttons > button {
+.addPeopleContainerButtons > button {
   width: 270px;
   height: 45px;
   gap: 0px;
@@ -139,19 +139,19 @@
   text-align: center;
 }
 
-.add_people__container__buttons__cancel {
+.addPeopleContainerButtonsCancel {
   border: 2px solid #cf3636;
   background-color: transparent;
   color: #cf3636;
 }
 
-.add_people__container__buttons__add {
+.addPeopleContainerButtonsAdd {
   border: none;
   background: #17a2b8;
   color: #fff;
 }
 
-.add_people__success {
+.addPeopleSuccess {
   font-size: 20px;
   font-weight: 600;
   line-height: 27.24px;

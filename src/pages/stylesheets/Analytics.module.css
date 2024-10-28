@@ -1,25 +1,27 @@
-.analytics__container {
+.analyticsContainer {
   min-width: 700px;
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow-x: auto;
+  margin-left: 15px;
 }
 
-.analytics__container__header {
+.analyticsContainerHeader {
   flex-shrink: 0;
   font-size: 22px;
   font-weight: 600;
   line-height: 33px;
   text-align: left;
   height: 80px;
-  margin-right: 15px;
+  margin-top: 15px;
+  margin-left: 15px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
 }
 
-.analytics__main {
+.analyticsMain {
   box-sizing: border-box;
   padding-right: 10px;
   display: grid;
@@ -29,12 +31,14 @@
   max-height: fit-content;
 }
 
-.analytics__main__section {
+.analyticsMainSection {
   padding: 12px;
   box-sizing: border-box;
+  background-color: #f9fcff;
+  border-radius: 8px;
 }
 
-.analytics__main__item__container {
+.analyticsMainItemContainer {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
@@ -44,15 +48,15 @@
   text-align: left;
 }
 
-.analytics__main__item__color {
+.analyticsMainItemColor {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background-color: #90c4cc;
   margin-right: 10px;
 }
-.analytics__main__item{
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.analyticsMainItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }

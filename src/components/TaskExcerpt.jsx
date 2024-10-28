@@ -103,32 +103,30 @@ const TaskExcerpt = ({
   }, []);
   // console.log(task);
   return (
-    <div className={TaskExcerptStyles.taskExcerpt__container}>
-      <div className={TaskExcerptStyles.taskExcerpt__top}>
-        <div className={TaskExcerptStyles.taskExcerpt__priority}>
+    <div className={TaskExcerptStyles.taskExcerptContainer}>
+      <div className={TaskExcerptStyles.taskExcerptTop}>
+        <div className={TaskExcerptStyles.taskExcerptPriority}>
           <div
-            className={TaskExcerptStyles.taskExcerpt__priority__color}
+            className={TaskExcerptStyles.taskExcerptPriorityColor}
             style={{ backgroundColor: taskPriority.color }}
           />
           {taskPriority.name}
 
           {task.createdBy !== user?._id && (
-            <div className={TaskExcerptStyles.taskExcerpt__user__avatar}>
+            <div className={TaskExcerptStyles.taskExcerptUserAvatar}>
               {trimName(user?.name)}
             </div>
           )}
         </div>
         <div
-          className={TaskExcerptStyles.taskExcerpt__top__options}
+          className={TaskExcerptStyles.taskExcerptTopOptions}
           ref={optionRef}
         >
           <button title="options" onClick={() => setShowOptions(!showOptions)}>
             <img src={dots} alt="..." />
           </button>
           {showOptions && (
-            <div
-              className={TaskExcerptStyles.taskExcerpt__top__options__dropdown}
-            >
+            <div className={TaskExcerptStyles.taskExcerptTopOptionsDropdown}>
               <button
                 onClick={(e) => handleEditTask(e)}
                 className={TaskExcerptStyles.edit__task__button}
@@ -143,7 +141,7 @@ const TaskExcerpt = ({
               </button>
               <button
                 onClick={(e) => handleDeleteTask(e)}
-                className={TaskExcerptStyles.delete__task__button}
+                className={TaskExcerptStyles.deleteTaskButton}
               >
                 Delete
               </button>
@@ -151,14 +149,11 @@ const TaskExcerpt = ({
           )}
         </div>
       </div>
-      <div
-        title={task?.title}
-        className={TaskExcerptStyles.taskExcerpt__header}
-      >
+      <div title={task?.title} className={TaskExcerptStyles.taskExcerptHeader}>
         {task?.title}
       </div>
       <div className={TaskExcerptStyles.taskExcerpt__checklist}>
-        <div className={TaskExcerptStyles.taskExcerpt__checklist__header}>
+        <div className={TaskExcerptStyles.taskExcerptChecklistHeader}>
           <label htmlFor="checklist">
             Checklist{" "}
             <span>{`(${checkedItemsCount}/${totalChecklistItems})`}</span>
@@ -173,12 +168,12 @@ const TaskExcerpt = ({
         </div>
 
         {showChecklist && (
-          <div className={TaskExcerptStyles.taskExcerpt__checklist__items}>
+          <div className={TaskExcerptStyles.taskExcerptChecklistItems}>
             {task.checklist.map((item) => {
               return (
                 <div
                   key={`${item.itemId},${item.title}`}
-                  className={TaskExcerptStyles.taskExcerpt__checklist__item}
+                  className={TaskExcerptStyles.taskExcerptChecklistItem}
                 >
                   <input
                     type="checkbox"
@@ -194,16 +189,16 @@ const TaskExcerpt = ({
           </div>
         )}
       </div>
-      <div className={TaskExcerptStyles.taskExcerpt__bottom}>
+      <div className={TaskExcerptStyles.taskExcerptBottom}>
         <div>
           {task.dueDate && (
             <span
-              className={`${TaskExcerptStyles.taskExcerpt__bottom__date} ${
+              className={`${TaskExcerptStyles.taskExcerptBottomDate} ${
                 task.status === "done"
-                  ? TaskExcerptStyles.taskExcerpt__bottom__date__done
+                  ? TaskExcerptStyles.taskExcerptBottomDateDone
                   : formatLocalDate(task.dueDate) <
                       formatLocalDate(Date.now()) || task.priority === "high"
-                  ? TaskExcerptStyles.taskExcerpt__bottom__date__high
+                  ? TaskExcerptStyles.taskExcerptBottomDateHigh
                   : ""
               }`}
             >
@@ -211,13 +206,13 @@ const TaskExcerpt = ({
             </span>
           )}
         </div>
-        <div className={TaskExcerptStyles.taskExcerpt__button}>
+        <div className={TaskExcerptStyles.taskExcerptButton}>
           {sections.map(
             (section) =>
               task.status !== section.value && (
                 <button
                   key={section.value}
-                  className={TaskExcerptStyles.taskExcerpt__button__item}
+                  className={TaskExcerptStyles.taskExcerptButtonItem}
                   onClick={() => handleStatusChange(section.value)}
                 >
                   {section.name}
@@ -227,7 +222,7 @@ const TaskExcerpt = ({
         </div>
       </div>
       {loading && (
-        <div className={TaskExcerptStyles.taskExcerpt__loading}>
+        <div className={TaskExcerptStyles.taskExcerptLoading}>
           <Loading />
         </div>
       )}

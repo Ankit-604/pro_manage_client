@@ -1,4 +1,4 @@
-.dashboard__container {
+.dashboardContainer {
   min-width: 700px;
   height: 100%;
   display: flex;
@@ -8,11 +8,11 @@
   margin-left: 20px;
 }
 
-.dashboard__container__header {
+.dashboardContainerHeader {
   width: 100%;
   flex-shrink: 0;
 }
-.dashboard__header__top {
+.dashboardHeaderTop {
   font-size: 22px;
   font-weight: 600;
   line-height: 33px;
@@ -24,7 +24,7 @@
   justify-content: space-between;
 }
 
-.dashboard__header__date {
+.dashboardHeaderDate {
   font-size: 17px;
   font-weight: 500;
   line-height: 30px;
@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
 }
-.dashboard__header__bottom {
+.dashboardHeaderBottom {
   height: 55px;
   box-sizing: border-box;
   margin-right: 15px;
@@ -41,7 +41,7 @@
   justify-content: space-between;
   align-items: center;
 }
-.dashboard__header__bottom__left {
+.dashboardHeaderBottomLeft {
   width: 100%;
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@
   line-height: 43.5px;
   text-align: left;
 }
-.dashboard__header__bottom__left > button {
+.dashboardHeaderBottomLeft > button {
   color: #707070;
   border: none;
   background-color: transparent;
@@ -63,14 +63,14 @@
   text-align: left;
   align-items: center;
 }
-.dashboard__header__bottom__left > button > img {
+.dashboardHeaderBottomLeft > button > img {
   width: 17px;
 }
-.dashboard__header__bottom__right {
+.dashboardHeaderBottomRight {
   height: 100%;
 }
 
-.dashboard__header__bottom__right > select {
+.dashboardHeaderBottomRight > select {
   padding: 3px;
   background-color: transparent;
   border: none;
@@ -80,7 +80,7 @@
   text-align: center;
 }
 
-.dashboard__main {
+.dashboardMain {
   display: flex;
   gap: 20px;
   overflow-x: auto;
@@ -91,7 +91,7 @@
   margin-bottom: 4px;
 }
 
-.dashboard__section {
+.dashboardSection {
   width: 360px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -101,7 +101,7 @@
   background: #eef2f5;
 }
 
-.dashboard__section__header {
+.dashboardSectionHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -109,23 +109,23 @@
   box-sizing: border-box;
 }
 
-.dashboard__section__header > p {
+.dashboardSectionHeader > p {
   text-transform: capitalize;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
   text-align: left;
 }
-.dashboard__section__header__buttons {
+.dashboardSectionHeaderButtons {
   display: flex;
   align-items: center;
   gap: 15px;
 }
-.dashboard__section__header__buttons > button {
+.dashboardSectionHeaderButtons > button {
   width: 18px;
   border: none;
 }
-.task__container {
+.taskContainer {
   min-height: 200px;
   max-height: calc(100vh - 280px);
   overflow-y: auto;

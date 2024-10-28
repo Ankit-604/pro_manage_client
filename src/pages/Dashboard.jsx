@@ -89,21 +89,23 @@ const Dashboard = () => {
 
   // console.log("Current tasks:", tasks);
   return (
-    <div className={DashboardStyles.dashboard__container}>
+    <div className={DashboardStyles.dashboardContainer}>
       <div className={DashboardStyles.dashboard__header}>
-        <div className={DashboardStyles.dashboard__header__top}>
+        <div className={DashboardStyles.dashboardHeaderTop}>
           <span>Welcome! {user && user.name}</span>{" "}
-          <span className={DashboardStyles.dashboard__header__date}>{formatLocalDate()}</span>
+          <span className={DashboardStyles.dashboardHeaderDate}>
+            {formatLocalDate()}
+          </span>
         </div>
-        <div className={DashboardStyles.dashboard__header__bottom}>
-          <div className={DashboardStyles.dashboard__header__bottom__left}>
+        <div className={DashboardStyles.dashboardHeaderBottom}>
+          <div className={DashboardStyles.dashboardHeaderBottomLeft}>
             <span>Board</span>
             <button onClick={() => setShowAddPeople(true)}>
               <img src={people} alt="people" />
               Add People
             </button>
           </div>
-          <div className={DashboardStyles.dashboard__header__bottom__right}>
+          <div className={DashboardStyles.dashboardHeaderBottomRight}>
             <select onChange={handleOptionChange} value={taskRange}>
               <option value="today">Today</option>
               <option value="week">This week</option>
@@ -113,12 +115,12 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className={DashboardStyles.dashboard__main}>
+      <div className={DashboardStyles.dashboardMain}>
         {sections.map((section) => (
-          <div className={DashboardStyles.dashboard__section} key={section.name}>
-            <div className={DashboardStyles.dashboard__section__header}>
+          <div className={DashboardStyles.dashboardSection} key={section.name}>
+            <div className={DashboardStyles.dashboardSectionHeader}>
               <p>{section.name}</p>{" "}
-              <div className={DashboardStyles.dashboard__section__header__buttons}>
+              <div className={DashboardStyles.dashboardSectionHeaderButtons}>
                 {section.value === "to-do" && (
                   <button
                     title="add task"
@@ -138,7 +140,7 @@ const Dashboard = () => {
                 </button>
               </div>
             </div>
-            <div className={DashboardStyles.task__container}>
+            <div className={DashboardStyles.taskContainer}>
               {sortedTasks &&
                 sortedTasks.length > 0 &&
                 sortedTasks
@@ -169,7 +171,6 @@ const Dashboard = () => {
           task={task}
         />
       )}
-
       {showDeleteTask && (
         <Delete
           loading={loading}

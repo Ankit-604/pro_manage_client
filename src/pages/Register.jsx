@@ -1,77 +1,79 @@
-import Form from "./../components/Form";
-import AuthLayoutStyles from "../layout/AuthLayout.module.css";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { registerUser, resetError } from "../features/user/userSlice";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { registerUser, resetError } from "../features/user/userSlice";
+import AuthLayoutStyles from "../layout/AuthLayout.module.css";
+import Form from "../components/Form";
 
 const Register = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { loading, success, error } = useSelector((state) => state.user);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
-  const [formError, setFormError] = useState({
+
+  const [fieldErrors, setFieldErrors] = useState({
     name: false,
     email: false,
     password: false,
     confirmPassword: false,
   });
-  const [errorMessage, setErrorMessage] = useState({
-    name: { message: "Name should be on atleast 3 characters long!" },
-    email: { message: "Valid email is required!" },
+
+  const [errorMessages, setErrorMessages] = useState({
+    name: { message: "Name must contain at least 3 characters." },
+    email: { message: "Enter a valid email address." },
     password: {
-      message:
-        "Password must be at least 8 characters and contain at least one letter and one number!",
+      message: "Password must be 8+ characters with letters and numbers.",
     },
-    confirmPassword: { message: "Passwords do not match!" },
+    confirmPassword: { message: "Passwords do not match." },
   });
 
-  // Function to check if a field is valid and update error state
-  const validateField = (fieldName, value) => {
-    let isValid = false;
+  const validateInput = (field, value) => {
+    let valid = false;
 
-    switch (fieldName) {
+    switch (field) {
       case "name":
-        isValid = value.trim().length > 2;
+        valid = value.trim().length >= 3;
         break;
       case "email":
-        isValid = /\S+@\S+\.\S+/.test(value);
+        valid = /\S+@\S+\.\S+/.test(value);
         break;
       case "password":
-        const isAlphanumeric = /^(?=.*[a-zA-Z])(?=.*\d).+$/.test(value);
-        const isLengthValid = value.trim().length >= 8;
+        const hasValidLength = value.trim().length >= 8;
+        const hasAlphanumeric = /^(?=.*[a-zA-Z])(?=.*\d).+$/.test(value);
 
-        if (!isLengthValid) {
-          setErrorMessage((prev) => ({
-            ...prev,
-            password: { message: "Password must be at least 8 characters!" },
-          }));
-        } else if (!isAlphanumeric) {
-          setErrorMessage((prev) => ({
+        if (!hasValidLength) {
+          setErrorMessages((prev) => ({
             ...prev,
             password: {
-              message: "Password must Alphanumeric(no special characters)!",
+              message: "Password must be at least 8 characters long.",
             },
           }));
+        } else if (!hasAlphanumeric) {
+          setErrorMessages((prev) => ({
+            ...prev,
+            password: { message: "Password must contain letters and numbers." },
+          }));
         }
-        isValid = isLengthValid && isAlphanumeric;
+        valid = hasValidLength && hasAlphanumeric;
         break;
       case "confirmPassword":
-        isValid = value === formData.password;
+        valid = value === formData.password;
         break;
       default:
         break;
     }
 
-    setFormError((prev) => ({
+    setFieldErrors((prev) => ({
       ...prev,
-      [fieldName]: !isValid,
+      [field]: !valid,
     }));
-    return isValid;
+    return valid;
   };
 
   const formFields = [
@@ -80,93 +82,94 @@ const Register = () => {
       value: formData.name,
       onChange: (e) => {
         const value = e.target.value;
-        setFormData({ ...formData, name: value });
-        validateField("name", value);
+        setFormData((prev) => ({ ...prev, name: value }));
+        validateInput("name", value);
       },
       type: "text",
       placeholder: "Name",
-      require: true,
+      required: true,
     },
     {
       name: "email",
       value: formData.email,
       onChange: (e) => {
         const value = e.target.value;
-        setFormData({ ...formData, email: value });
-        validateField("email", value);
+        setFormData((prev) => ({ ...prev, email: value }));
+        validateInput("email", value);
       },
       type: "email",
       placeholder: "Email",
-      require: true,
+      required: true,
     },
     {
       name: "password",
       value: formData.password,
       onChange: (e) => {
         const value = e.target.value;
-        setFormData({ ...formData, password: value });
-        validateField("password", value);
+        setFormData((prev) => ({ ...prev, password: value }));
+        validateInput("password", value);
       },
       type: "password",
       placeholder: "Password",
-      require: true,
+      required: true,
     },
     {
       name: "confirmPassword",
       value: formData.confirmPassword,
       onChange: (e) => {
         const value = e.target.value;
-        setFormData({ ...formData, confirmPassword: value });
-        validateField("confirmPassword", value);
+        setFormData((prev) => ({ ...prev, confirmPassword: value }));
+        validateInput("confirmPassword", value);
       },
       type: "password",
-      placeholder: "Confirm password",
-      require: true,
+      placeholder: "Confirm Password",
+      required: true,
     },
   ];
 
-  const onSubmit = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    let isError = false;
+    let hasError = false;
 
-    // Validate all fields before submitting
     Object.keys(formData).forEach((key) => {
-      const isValid = validateField(key, formData[key]);
-      if (!isValid) {
-        isError = true;
-      }
+      const valid = validateInput(key, formData[key]);
+      if (!valid) hasError = true;
     });
-    if (isError) return;
 
+    if (hasError) return;
     dispatch(registerUser(formData));
   };
 
   useEffect(() => {
-    if (success) return alert(success);
-  }, [error, loading, success]);
+    if (success) {
+      navigate("/login");
+      dispatch(resetError());
+    }
+  }, [success, navigate, dispatch]);
 
   return (
     <div className={AuthLayoutStyles.container}>
-      <span className={AuthLayoutStyles.title}>Register</span>
+      <h2 className={AuthLayoutStyles.title}>Register</h2>
       <Form
-        formError={formError}
+        formError={fieldErrors}
         formFields={formFields}
-        onSubmit={onSubmit}
-        errorMessage={errorMessage}
+        onSubmit={handleFormSubmit}
+        errorMessage={errorMessages}
         buttonText="Register"
       />
 
-      <div className={AuthLayoutStyles.link__text}>Have an account?</div>
+      <div className={AuthLayoutStyles.link__text}>
+        Already have an account?
+      </div>
       <Link
         to="/login"
         className={AuthLayoutStyles.btn}
-        onClick={() => {
-          dispatch(resetError());
-        }}
+        onClick={() => dispatch(resetError())}
       >
         Login
       </Link>
     </div>
   );
 };
+
 export default Register;
