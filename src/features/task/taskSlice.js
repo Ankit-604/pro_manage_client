@@ -2,9 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const backendUrl =
-  import.meta.env.VITE_BACKEND_URL ||
-  "pro-manage-server-ten.vercel.app
-";
+  import.meta.env.VITE_BACKEND_URL;
 console.log(import.meta.env.VITE_BACKEND_URL);
 
 // Async thunk to fetch tasks
