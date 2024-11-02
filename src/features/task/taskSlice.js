@@ -3,7 +3,6 @@ import axios from "axios";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-// Async thunk to fetch tasks
 export const getTasks = createAsyncThunk(
   "task/getTasks",
   async (taskRange, { rejectWithValue }) => {
@@ -14,10 +13,10 @@ export const getTasks = createAsyncThunk(
           Authorization: localStorage.getItem("token"),
         },
         params: {
-          range: taskRange, // Use taskRange here
+          range: taskRange,
         },
       });
-      return response?.data; // Return data for the fulfilled case
+      return response?.data;
     } catch (error) {
       let errorMessage = "An unexpected error occurred";
       if (error.response) {
@@ -27,13 +26,12 @@ export const getTasks = createAsyncThunk(
       } else {
         errorMessage = "Error: " + error.message;
       }
-      console.error("Error fetching tasks:", error); // Log the error
+      console.error("Error fetching tasks:", error);
       return rejectWithValue({ error: true, message: errorMessage });
     }
   }
 );
 
-//create task
 export const createTask = createAsyncThunk(
   "task/createTask",
   async (task, { rejectWithValue }) => {
@@ -64,7 +62,6 @@ export const createTask = createAsyncThunk(
   }
 );
 
-//update task checklist
 export const updateTask = createAsyncThunk(
   "task/updateTask",
   async ({ taskId, formData }, { rejectWithValue }) => {
@@ -96,7 +93,6 @@ export const updateTask = createAsyncThunk(
   }
 );
 
-// addPeople to board
 export const addPeople = createAsyncThunk(
   "task/addPeople",
   async (user, { rejectWithValue }) => {
@@ -129,7 +125,6 @@ export const addPeople = createAsyncThunk(
   }
 );
 
-// delete Task
 export const deleteTask = createAsyncThunk(
   "task/deleteTask",
   async (taskId, { rejectWithValue }) => {
@@ -180,7 +175,6 @@ const taskSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    //get tasks
     builder
       .addCase(getTasks.pending, (state) => {
         state.loading = true;
@@ -198,7 +192,6 @@ const taskSlice = createSlice({
         state.success = null;
       });
 
-    //create task
     builder
       .addCase(createTask.pending, (state) => {
         state.loading = true;
@@ -217,7 +210,6 @@ const taskSlice = createSlice({
         state.error = action.payload?.message;
       });
 
-    //update task
     builder
       .addCase(updateTask.pending, (state) => {
         state.loading = true;
@@ -244,7 +236,6 @@ const taskSlice = createSlice({
             task.status = formData.status;
           }
 
-          // Initialize assignTo as an array if it’s undefined
           task.assignTo = task.assignTo || [];
 
           if (formData.assignTo) {
@@ -266,7 +257,6 @@ const taskSlice = createSlice({
         state.success = null;
       });
 
-    //add people to board
     builder
       .addCase(addPeople.pending, (state) => {
         state.loading = true;
@@ -296,7 +286,6 @@ const taskSlice = createSlice({
         state.success = null;
       });
 
-    //delete task
     builder
       .addCase(deleteTask.pending, (state) => {
         state.loading = true;

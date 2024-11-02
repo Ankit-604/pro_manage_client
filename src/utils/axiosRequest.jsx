@@ -28,7 +28,7 @@ export const searchUser = async (searchQuery) => {
         Authorization: localStorage.getItem("token"),
       },
     });
-    // console.log(response.data);
+
     return response.data;
   } catch (error) {
     let errorMessage = "An unexpected error occurred";

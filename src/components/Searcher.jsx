@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import PropTypes from "prop-types"; // Import PropTypes
+import PropTypes from "prop-types";
 import SearcherStyles from "./styles/Searcher.module.css";
 import UserSearchExcerpt from "./UserSearchExcerpt";
 import uparrow from "../assets/svg/up-arrow.svg";

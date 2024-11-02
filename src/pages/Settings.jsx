@@ -204,7 +204,7 @@ const Settings = () => {
   };
 
   return (
-    <div className={SettingStyles.setting__container}>
+    <div className={SettingStyles.settingContainer}>
       <h3>Settings</h3>
       <div className={SettingStyles.container}>
         <Form

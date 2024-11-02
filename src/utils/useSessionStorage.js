@@ -11,7 +11,6 @@ const useSessionStorage = (storageKey, initialValue) => {
   });
 
   const setSessionStorageValue = (value) => {
-
     try {
       setSessionStorage(value);
       window.sessionStorage.setItem(storageKey, JSON.stringify(value));
@@ -19,7 +18,7 @@ const useSessionStorage = (storageKey, initialValue) => {
       console.log(error);
     }
   };
-console.log(window.sessionStorage.getItem(storageKey))
+  console.log(window.sessionStorage.getItem(storageKey));
   return [sessionStorage, setSessionStorageValue];
 };
 

@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const backendUrl =
-  import.meta.env.VITE_BACKEND_URL;
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const initialState = {
   user: null,
@@ -15,11 +14,10 @@ export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (formData, { rejectWithValue }) => {
     try {
-      // Creating URLSearchParams object for formData
       const params = new URLSearchParams();
       for (const key in formData) {
         if (formData.hasOwnProperty(key)) {
-          params.append(key, formData[key]); // Updating params with formData
+          params.append(key, formData[key]);
         }
       }
 
@@ -146,7 +144,6 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // register user
     builder
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
@@ -165,7 +162,6 @@ const userSlice = createSlice({
         state.success = null;
       });
 
-    //login user
     builder
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
@@ -184,7 +180,6 @@ const userSlice = createSlice({
         state.success = null;
       });
 
-    //get user details
     builder
       .addCase(getUserDetails.pending, (state) => {
         state.loading = true;
@@ -202,7 +197,7 @@ const userSlice = createSlice({
         state.error = action.payload?.message;
         state.success = null;
       });
-    // update user details
+
     builder
       .addCase(updateUserDetails.pending, (state) => {
         state.loading = true;

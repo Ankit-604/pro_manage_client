@@ -282,7 +282,6 @@ input.taskError {
   border-color: red !important;
 }
 
-/* added */
 button:disabled {
   padding-top: 2px;
   cursor: unset !important;
