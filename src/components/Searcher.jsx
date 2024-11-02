@@ -8,7 +8,7 @@ import Loading from "./Loading";
 import { searchUser } from "../utils/axiosRequest";
 import toast from "react-hot-toast";
 
-const Search = ({ setUser, task = null, data }) => {
+const Search = ({ setUser, task = null, data, btnText }) => {
   const [search, setSearch] = useState("");
   const [showUserList, setShowUserList] = useState(false);
   const [loadingUser, setLoadingUser] = useState(false);
@@ -119,8 +119,7 @@ const Search = ({ setUser, task = null, data }) => {
             <span>
               <Loading />
             </span>
-          )}
-          {""}
+          )}{" "}
           {searchUserResults.length > 0 &&
             !loadingUser &&
             searchUserResults.map((user) => (
@@ -136,7 +135,7 @@ const Search = ({ setUser, task = null, data }) => {
                       handleSelect(user);
                     }}
                   >
-                    Assign
+                    {btnText}
                   </button>
                 </div>
               </div>
@@ -149,13 +148,17 @@ const Search = ({ setUser, task = null, data }) => {
 
 Search.propTypes = {
   setUser: PropTypes.func.isRequired,
-  task: PropTypes.shape({
-    assignTo: PropTypes.arrayOf(PropTypes.string),
-  }),
+  task: PropTypes.oneOfType([
+    PropTypes.shape({
+      assignTo: PropTypes.arrayOf(PropTypes.string),
+    }),
+    PropTypes.oneOf([null]),
+  ]),
   data: PropTypes.shape({
-    email: PropTypes.string,
+    email: PropTypes.string.isRequired,
     assignTo: PropTypes.string,
   }).isRequired,
+  btnText: PropTypes.string.isRequired,
 };
 
 export default Search;

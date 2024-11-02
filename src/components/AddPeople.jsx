@@ -40,7 +40,7 @@ const AddPeople = ({ setShow }) => {
               Add people to the board
             </div>
             <div className={AddPeopleStyles.addPeopleInputContainer}>
-              <Searcher setUser={handleSetUser} data={user} />
+              <Searcher setUser={handleSetUser} data={user} btnText={"Add"} />
             </div>
             <div className={AddPeopleStyles.addPeopleContainerButtons}>
               <button
@@ -66,6 +66,7 @@ const AddPeople = ({ setShow }) => {
                 onClick={() => setShow(false)}
                 className={AddPeopleStyles.addPeopleContainerButtonsAdd}
               >
+                {""}
                 Okay, got it!
               </button>
             </div>

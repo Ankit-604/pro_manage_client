@@ -29,6 +29,7 @@ const AddEditTask = ({
 
   const originalData = useMemo(() => ({ ...task }), [task]);
   const [showDatePicker, setShowDatePicker] = useState(false);
+
   const generateUniqueId = () => {
     return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
   };
@@ -217,7 +218,12 @@ const AddEditTask = ({
             <UserSearch user={user} />
           ) : (
             <div className={AddEditTaskStyles.addTaskBoxAssigneeContainer}>
-              <Searcher setUser={handleSetAssignee} task={task} data={data} />
+              <Searcher
+                setUser={handleSetAssignee}
+                task={task}
+                data={data}
+                btnText={"Assign"}
+              />
             </div>
           )}
         </div>
