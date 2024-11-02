@@ -1,9 +1,12 @@
+import React from "react";
+import PropTypes from "prop-types";
 import AuthLayoutStyles from "./AuthLayout.module.css";
 import Art from "../assets/Art.png";
 import { Navigate } from "react-router";
+
 const AuthLayout = ({ children }) => {
   const isAuthenticated = localStorage.getItem("token");
-  if (!!isAuthenticated) {
+  if (isAuthenticated) {
     return <Navigate to="/" replace />;
   }
   return (
@@ -18,4 +21,9 @@ const AuthLayout = ({ children }) => {
     </div>
   );
 };
+
+AuthLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 export default AuthLayout;

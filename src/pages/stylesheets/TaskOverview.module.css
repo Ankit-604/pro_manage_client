@@ -82,6 +82,30 @@
   max-height: 400px;
 }
 
+.taskOverviewChecklistItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.taskOverviewChecklistItem input[type="checkbox"] {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+}
+.taskOverviewChecklistItem input[type="checkbox"]:checked {
+  accent-color: #17a2b8;
+}
+
+.taskOverviewChecklistItem span {
+  line-height: normal;
+  margin: 0;
+}
 .taskOverviewMainDueDate {
   padding: 4px;
   display: flex;

@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import { formatLocalDate, priorities } from "../utils";
 import AddEditTaskStyles from "./styles/AddEditTask.module.css";
 import deleteIcon from "../assets/svg/delete.svg";
-import { searchUser } from "../utils/axiosRequest";
+
 import Loading from "./Loading";
 import toast from "react-hot-toast";
 import UserSearchExcerpt from "./UserSearchExcerpt";
-import uparrow from "../assets/svg/up-arrow.svg";
-import downarrow from "../assets/svg/down-arrow.svg";
 import Calendar from "./Calendar";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
+import Searcher from "./Searcher";
 
 const AddEditTask = ({
   task = null,
@@ -24,16 +24,11 @@ const AddEditTask = ({
     priority: task?.priority || "",
     assignTo: task?.assignTo || "",
     checklist: task?.checklist || [],
-    dueDate: task?.dueDate || "",
+    dueDate: task?.dueDate || null,
   });
 
-  const originalData = { ...task };
+  const originalData = useMemo(() => ({ ...task }), [task]);
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [search, setSearch] = useState("");
-  const [loadingUser, setLoadingUser] = useState(false);
-  const [searchUserResults, setSearchUserResults] = useState([]);
-  const [showUserList, setShowUserList] = useState(false);
-  const lastSearchRef = useRef("");
   const generateUniqueId = () => {
     return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
   };
@@ -44,61 +39,17 @@ const AddEditTask = ({
     checklistItems: {},
   });
 
-  const totalChecklistItems = data.checklist.length;
-  const checkedItemsCount = data.checklist.filter(
-    (item) => item.checked
-  ).length;
+  const totalChecklistItems = useMemo(
+    () => data.checklist.length,
+    [data.checklist]
+  );
+  const checkedItemsCount = useMemo(
+    () => data.checklist.filter((item) => item.checked).length,
+    [data.checklist]
+  );
 
-  const userListRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (userListRef.current && !userListRef.current.contains(event.target)) {
-        setShowUserList(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handler = setTimeout(async () => {
-      if (!search) {
-        setSearchUserResults([]);
-        setShowUserList(false);
-        return;
-      }
-
-      lastSearchRef.current = search;
-      setLoadingUser(true);
-      setShowUserList(true);
-      try {
-        const { success, data, message } = await searchUser(search);
-
-        if (success) {
-          setSearchUserResults(data);
-        } else {
-          toast.error(message);
-        }
-      } finally {
-        setLoadingUser(false);
-      }
-    }, 800);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [search]);
-
-  const handleAssigneeSelect = (user) => {
-    if (user.email !== lastSearchRef.current) {
-      setData((prev) => ({ ...prev, assignTo: user._id }));
-      setSearchUserResults([]);
-      setSearch(user.email);
-    }
+  const handleSetAssignee = (user) => {
+    setData((prev) => ({ ...prev, assignTo: user._id }));
   };
 
   const handleAddNewItem = () => {
@@ -146,7 +97,6 @@ const AddEditTask = ({
     }));
   };
 
-  //validate fields
   const validatedata = () => {
     const newErrors = {
       title: !data.title,
@@ -216,6 +166,7 @@ const AddEditTask = ({
             Title <span className={AddEditTaskStyles.required}>*</span>
           </label>
           <input
+            name="title"
             className={formErrors.title ? AddEditTaskStyles.taskError : ""}
             id="title"
             type="text"
@@ -228,7 +179,7 @@ const AddEditTask = ({
         </div>
 
         <div className={AddEditTaskStyles.addTaskBoxPriority}>
-          <label htmlFor="priority">
+          <label>
             Priority <span className={AddEditTaskStyles.required}>*</span>
           </label>
           <div className={AddEditTaskStyles.addTaskPriorityButtonContainer}>
@@ -259,122 +210,62 @@ const AddEditTask = ({
         </div>
 
         <div className={AddEditTaskStyles.addTaskBoxAssignee}>
-          <label htmlFor="assignee">Assign to</label>
+          <label>Assign to</label>
           {!!task &&
           (task?.assignTo?.includes(user._id) ||
             !task?.createdBy === user._id) ? (
             <UserSearchExcerpt user={user} />
           ) : (
             <div className={AddEditTaskStyles.addTaskBoxAssigneeContainer}>
-              <div className={AddEditTaskStyles.assigneeContainerInput}>
-                <input
-                  type="text"
-                  placeholder="Search for an assignee"
-                  value={search}
-                  onChange={(e) => {
-                    if (e.target.value.trim() === "") {
-                      setData((prev) => ({ ...prev, assignTo: "" }));
-                    }
-                    setSearch(e.target.value);
-                  }}
-                />
-                {search && (
-                  <button
-                    title="show/hide userlist"
-                    onClick={() => setShowUserList(!showUserList)}
-                  >
-                    <img
-                      src={!showUserList ? downarrow : uparrow}
-                      alt="show userlist"
-                    />
-                  </button>
-                )}
-              </div>
-              {showUserList && (
-                <div
-                  ref={userListRef}
-                  className={AddEditTaskStyles.assigneeContainer}
-                >
-                  {searchUserResults.length === 0 &&
-                    !loadingUser &&
-                    !!search && (
-                      <p style={{ padding: "4px" }}>No user found!</p>
-                    )}
-                  {loadingUser && (
-                    <span>
-                      <Loading />
-                    </span>
-                  )}
-                  {searchUserResults.length > 0 &&
-                    !loadingUser &&
-                    searchUserResults.map((user) => (
-                      <div
-                        key={user._id}
-                        className={AddEditTaskStyles.assigneeSearchUser}
-                      >
-                        <UserSearchExcerpt user={user} />
-                        <button
-                          disabled={
-                            task?.assignTo?.includes(user._id) ||
-                            data.assignTo === user._id
-                          }
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleAssigneeSelect(user);
-                          }}
-                        >
-                          {task?.assignTo?.includes(user._id) ||
-                          data.assignTo === user._id
-                            ? "Assigned"
-                            : "Assign"}
-                        </button>
-                      </div>
-                    ))}
-                </div>
-              )}
+              <Searcher setUser={handleSetAssignee} task={task} data={data} />
             </div>
           )}
         </div>
 
         <div className={AddEditTaskStyles.addTaskBoxChecklist}>
-          <label htmlFor="checklist">
+          <label htmlFor="checklist-container">
             Checklist{" "}
             <span>{`(${checkedItemsCount}/${totalChecklistItems})`}</span>
             <span className={AddEditTaskStyles.required}>*</span>
           </label>
-          <div className={AddEditTaskStyles.addTaskBoxChecklistContainer}>
+          <div
+            id="checklist-container"
+            className={AddEditTaskStyles.addTaskBoxChecklistContainer}
+          >
             <div className={AddEditTaskStyles.checklist__items}>
-              {data.checklist.map((item) => (
-                <div
-                  className={AddEditTaskStyles.checklistItems}
-                  key={item.itemId}
-                >
-                  <input
-                    type="checkbox"
-                    checked={item.checked}
-                    onChange={() => handleCheckboxChange(item.itemId)}
-                  />
-                  <input
-                    className={
-                      formErrors.checklistItems[item.itemId]
-                        ? AddEditTaskStyles.taskError
-                        : ""
-                    }
-                    type="text"
-                    value={item.text}
-                    onChange={(e) =>
-                      handleTextChange(item.itemId, e.target.value)
-                    }
-                    placeholder="Add a task"
-                  />
-                  <button
-                    onClick={() => handleDeleteItem(item.itemId)}
-                    className={AddEditTaskStyles.deleteIcon}
+              {Array.isArray(data.checklist) &&
+                data.checklist.map((item) => (
+                  <div
+                    className={AddEditTaskStyles.checklistItems}
+                    key={item.itemId}
                   >
-                    <img src={deleteIcon} alt="delete-icon" />
-                  </button>
-                </div>
-              ))}
+                    <input
+                      type="checkbox"
+                      checked={item.checked}
+                      onChange={() => handleCheckboxChange(item.itemId)}
+                    />
+                    <input
+                      className={
+                        formErrors.checklistItems[item.itemId]
+                          ? AddEditTaskStyles.taskError
+                          : ""
+                      }
+                      type="text"
+                      value={item.text}
+                      onChange={(e) =>
+                        handleTextChange(item.itemId, e.target.value)
+                      }
+                      placeholder="Add a task"
+                      aria-label={`Checklist item ${item.itemId}`}
+                    />
+                    <button
+                      onClick={() => handleDeleteItem(item.itemId)}
+                      className={AddEditTaskStyles.deleteIcon}
+                    >
+                      <img src={deleteIcon} alt="delete-icon" />
+                    </button>
+                  </div>
+                ))}
               <button onClick={handleAddNewItem}>+ Add New</button>
             </div>
           </div>
@@ -414,6 +305,19 @@ const AddEditTask = ({
       </div>
     </div>
   );
+};
+
+AddEditTask.propTypes = {
+  task: PropTypes.shape({
+    title: PropTypes.string,
+    priority: PropTypes.string,
+    assignTo: PropTypes.string,
+    checklist: PropTypes.arrayOf(PropTypes.string),
+    dueDate: PropTypes.string,
+  }),
+  setIsShown: PropTypes.func.isRequired,
+  mode: PropTypes.oneOf(["create", "edit"]),
+  onsubmit: PropTypes.func.isRequired,
 };
 
 export default AddEditTask;

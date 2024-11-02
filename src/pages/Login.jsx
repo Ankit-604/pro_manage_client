@@ -27,7 +27,7 @@ const Login = () => {
         "Password must be at least 8 characters and contain at least one letter and one number!",
     },
   });
-  // Function to check if a field is valid and update error state
+
   const validateField = (fieldName, value) => {
     let isValid = false;
 
@@ -35,7 +35,8 @@ const Login = () => {
       case "email":
         isValid = /\S+@\S+\.\S+/.test(value);
         break;
-      case "password":
+
+      case "password": {
         const isAlphanumeric = /^(?=.*[a-zA-Z])(?=.*\d).+$/.test(value);
         const isLengthValid = value.trim().length >= 8;
 
@@ -54,6 +55,7 @@ const Login = () => {
         }
         isValid = isLengthValid && isAlphanumeric;
         break;
+      }
       default:
         break;
     }
@@ -62,6 +64,7 @@ const Login = () => {
       ...prev,
       [fieldName]: !isValid,
     }));
+
     return isValid;
   };
 
@@ -96,7 +99,6 @@ const Login = () => {
     e.preventDefault();
     let isError = false;
 
-    // Validate all fields before submitting
     Object.keys(formData).forEach((key) => {
       const isValid = validateField(key, formData[key]);
       if (!isValid) {
@@ -110,7 +112,7 @@ const Login = () => {
 
   useEffect(() => {
     if (success) {
-      toast.success("Authentication successfull!");
+      toast.success("Authentication Successful!");
       navigate("/");
       setFormData({
         email: "",

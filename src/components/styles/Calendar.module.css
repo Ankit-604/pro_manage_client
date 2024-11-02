@@ -2,9 +2,10 @@
   position: absolute;
   z-index: 40;
   bottom: 60px;
-  border: 1px solid #767575;
+  border: 1px solid #140c0c;
   border-radius: 7px;
   background-color: white;
+  margin-left: 50px;
 }
 
 .react-calendar {

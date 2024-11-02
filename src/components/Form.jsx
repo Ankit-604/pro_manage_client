@@ -1,10 +1,11 @@
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import FormStyles from "./styles/Form.module.css";
 import AuthLayoutStyles from "../layout/AuthLayout.module.css";
 import Loading from "./Loading";
 import { useSelector } from "react-redux";
 import eye from "../assets/svg/eye.svg";
 import eyeOff from "../assets/svg/eye-hide.svg";
-import React, { useState } from "react";
 import profile from "../assets/svg/profile.svg";
 import message from "../assets/svg/message.svg";
 import lock from "../assets/svg/lock.svg";
@@ -22,21 +23,17 @@ const Form = ({
     password: lock,
   };
   const { loading, error } = useSelector((state) => state.user);
-
   const [showPassword, setShowPassword] = useState({});
-
   const togglePasswordVisibility = (fieldName) => {
     setShowPassword((prev) => ({
       ...prev,
       [fieldName]: !prev[fieldName],
     }));
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(e);
   };
-
   return (
     <form onSubmit={handleSubmit}>
       {formFields.map((field, index) => (
@@ -58,7 +55,6 @@ const Form = ({
               required={field.required}
               placeholder={field.placeholder}
             />
-
             {field.type === "password" && (
               <span className={FormStyles.inputIconPassword}>
                 <img
@@ -74,13 +70,29 @@ const Form = ({
           </span>
         </div>
       ))}
-
       <button type="submit" disabled={loading}>
         {loading ? <Loading /> : buttonText}
       </button>
       <span className={AuthLayoutStyles.error_msg}>{error}</span>
     </form>
   );
+};
+
+Form.propTypes = {
+  formError: PropTypes.object.isRequired,
+  formFields: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+      onChange: PropTypes.func.isRequired,
+      type: PropTypes.string.isRequired,
+      placeholder: PropTypes.string.isRequired,
+      required: PropTypes.bool.isRequired,
+    })
+  ).isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  errorMessage: PropTypes.object.isRequired,
+  buttonText: PropTypes.string.isRequired,
 };
 
 export default Form;

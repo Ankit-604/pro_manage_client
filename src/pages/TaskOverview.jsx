@@ -1,6 +1,5 @@
 import codesandbox from "../assets/svg/codesandbox.svg";
 import TaskOverviewStyles from "./stylesheets/TaskOverview.module.css";
-import TaskExcerptStyles from "./../components/styles/TaskExcerpt.module.css";
 import { formatLocalDate, priorities } from "./../utils/index";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
@@ -39,8 +38,6 @@ const TaskOverview = () => {
   const priority =
     task && priorities.find((priority) => priority.value === task.priority);
 
-  console.log(task.dueDate);
-
   return (
     <div className={TaskOverviewStyles.taskOverviewContainer}>
       <div className={TaskOverviewStyles.taskOverviewHeader}>
@@ -70,7 +67,7 @@ const TaskOverview = () => {
               <div
                 className={TaskOverviewStyles.taskOverviewMainChecklistHeader}
               >
-                <label htmlFor="checklist">
+                <label>
                   Checklist{" "}
                   <span>{`(${checkedItemsCount}/${totalChecklistItems})`}</span>
                 </label>
@@ -79,14 +76,20 @@ const TaskOverview = () => {
               <div
                 className={TaskOverviewStyles.taskOverviewMainChecklistItems}
               >
-                <div className={TaskExcerptStyles.taskExcerptChecklistItems}>
+                <div className={TaskOverviewStyles.taskOverviewChecklistItems}>
                   {task?.checklist?.map((item) => {
                     return (
                       <div
                         key={`${item.itemId},${item.title}`}
-                        className={TaskExcerptStyles.taskExcerptChecklistItem}
+                        className={TaskOverviewStyles.taskOverviewChecklistItem}
                       >
-                        <input type="checkbox" checked={item.checked} />
+                        <input
+                          type="checkbox"
+                          checked={item.checked}
+                          onChange={(e) => {
+                            e.preventDefault();
+                          }}
+                        />
                         <span>{item.text}</span>
                       </div>
                     );
@@ -96,8 +99,8 @@ const TaskOverview = () => {
             </div>
             {task?.dueDate && (
               <div className={TaskOverviewStyles.taskOverviewMainDueDate}>
-                Due Date
-                <span>{formatLocalDate(task?.dueDate, " MMM dd")}</span>
+                Due Date:{""}
+                <span>{formatLocalDate(task?.dueDate, " MMM ddth")}</span>
               </div>
             )}
           </div>

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import ProtectedRouteModuleStyles from "./ProtectedRoute.module.css";
 import codesandbox from "../assets/svg/codesandbox.svg";
@@ -30,11 +31,12 @@ const ProtectedRoute = ({ children }) => {
           handleLogout();
         });
     }
-  }, []);
+  }, [dispatch, handleLogout]);
+
   useEffect(() => {
     dispatch(getTasks(taskRange));
     dispatch(backToDefault());
-  }, [taskRange]);
+  }, [taskRange, dispatch]);
 
   return (
     <div className={ProtectedRouteModuleStyles.protectedRoute}>
@@ -52,21 +54,21 @@ const ProtectedRoute = ({ children }) => {
               className={({ isActive }) => (isActive ? "active-link" : "")}
             >
               <img src={layout} alt="layout" />
-              Board
+              <span style={{ marginLeft: "8px" }}>Board</span>
             </NavLink>
             <NavLink
               to="/analytics"
               className={({ isActive }) => (isActive ? "active-link" : "")}
             >
               <img src={database} alt="database" />
-              Analytics
+              <span style={{ marginLeft: "8px" }}>Analytics</span>
             </NavLink>
             <NavLink
               to="/settings"
               className={({ isActive }) => (isActive ? "active-link" : "")}
             >
               <img src={settings} alt="settings" />
-              Settings
+              <span style={{ marginLeft: "8px" }}>Settings</span>
             </NavLink>
           </div>
           <button
@@ -75,7 +77,7 @@ const ProtectedRoute = ({ children }) => {
             }}
           >
             <img src={logout} alt="logout" />
-            Logout
+            <span style={{ marginLeft: "8px" }}>Logout</span>
           </button>
         </div>
       </section>
@@ -90,6 +92,10 @@ const ProtectedRoute = ({ children }) => {
       )}
     </div>
   );
+};
+
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default ProtectedRoute;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Calendar as MyCalendar } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import CalendarStyles from "./styles/Calendar.module.css";
@@ -35,11 +36,16 @@ const Calendar = ({ selectedDate, onChange }) => {
         }}
         className={CalendarStyles.myCalendarButtons}
       >
-        <button onClick={() => onChange()}>clear</button>{" "}
-        <button onClick={() => onChange(new Date())}>today</button>
+        <button onClick={() => onChange()}>Clear</button>
+        <button onClick={() => onChange(new Date())}>Today</button>
       </div>
     </div>
   );
+};
+
+Calendar.propTypes = {
+  selectedDate: PropTypes.instanceOf(Date).isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Calendar;

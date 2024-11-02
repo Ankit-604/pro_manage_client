@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
-import { toLocaleString } from "react";
 
 export const useHandleLogout = () => {
   const dispatch = useDispatch();
@@ -16,26 +15,38 @@ export const useHandleLogout = () => {
   return handleLogout;
 };
 
+const getOrdinalSuffix = (day) => {
+  if (day > 3 && day < 21) return "th";
+  switch (day % 10) {
+    case 1:
+      return "st";
+    case 2:
+      return "nd";
+    case 3:
+      return "rd";
+    default:
+      return "th";
+  }
+};
+
 export const formatLocalDate = (
   inputDate = new Date(),
   format = "dd MMM, yyyy"
 ) => {
   const date = new Date(inputDate);
   const day = date.getDate().toString().padStart(2, "0");
-  const month = date.toLocaleString("default", { month: "short" });
-  const fullMonth = date.toLocaleString("default", { month: "long" });
-  const numMonth = (date.getMonth() + 1).toString().padStart(2, "0");
+  const monthShort = date.toLocaleString("default", { month: "short" });
+  const monthFull = date.toLocaleString("default", { month: "long" });
+  const monthNum = (date.getMonth() + 1).toString().padStart(2, "0");
   const year = date.getFullYear();
-  const time = date.getTime();
 
-  // console.log("numMonth", month);
   return format
     .replace("dd", day)
-    .replace("MMMM", fullMonth)
-    .replace("MMM", month)
-    .replace("MM", numMonth)
+    .replace("MMMM", monthFull)
+    .replace("MMM", monthShort)
+    .replace("MM", monthNum)
     .replace("yyyy", year)
-    .replace("tt", time);
+    .replace("th", getOrdinalSuffix(day));
 };
 
 export const priorities = [
@@ -47,14 +58,13 @@ export const priorities = [
 export const trimName = (name) => {
   if (!name) return false;
 
-  name = name.trim();
-
-  const words = name.split(" ");
-  const firstLetters = words
+  const trimmed = name.trim();
+  const parts = trimmed.split(" ");
+  const initials = parts
     .slice(0, 2)
-    .map((word) => word.charAt(0).toUpperCase())
+    .map((part) => part.charAt(0).toUpperCase())
     .join("");
-  return firstLetters;
+  return initials;
 };
 
 export const sections = [

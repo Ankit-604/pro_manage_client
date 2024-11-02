@@ -1,11 +1,10 @@
+import PropTypes from "prop-types";
 import TaskExcerptStyles from "./styles/TaskExcerpt.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import dots from "../assets/svg/dot.svg";
 import upArrow from "../assets/svg/up-arrow.svg";
 import downArrow from "../assets/svg/down-arrow.svg";
-
 import { formatLocalDate, priorities, sections, trimName } from "../utils";
 import { updateTask } from "../features/task/taskSlice";
 import Loading from "./Loading";
@@ -25,7 +24,6 @@ const TaskExcerpt = ({
   const taskPriority = priorities.find(
     (priority) => priority.value === task.priority
   );
-
   const optionRef = useRef(null);
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
@@ -44,26 +42,15 @@ const TaskExcerpt = ({
     const result = await dispatch(
       updateTask({ taskId: task._id, formData: { itemId, checked } })
     );
-
-    if (result.type === "task/updateTaskChecklist/fulfilled") {
-      setloading(false);
-    } else {
-      setloading(false);
-    }
+    setloading(result.type !== "task/updateTaskChecklist/fulfilled");
   };
 
   const handleStatusChange = async (status) => {
     setloading(true);
-
     const result = await dispatch(
       updateTask({ taskId: task._id, formData: { status } })
     );
-
-    if (result.type === "task/updateTaskStatus/fulfilled") {
-      setloading(false);
-    } else {
-      setloading(false);
-    }
+    setloading(result.type !== "task/updateTaskStatus/fulfilled");
   };
 
   const handleEditTask = (e) => {
@@ -73,9 +60,9 @@ const TaskExcerpt = ({
     setIsAddEditTaskShown(true);
     setShowOptions(false);
   };
+
   const handleShare = (e) => {
     e.preventDefault();
-
     const link = `${window.location.origin}/taskoverview/${task._id}`;
     navigator.clipboard
       .writeText(link)
@@ -95,13 +82,12 @@ const TaskExcerpt = ({
         setShowOptions(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  // console.log(task);
+
   return (
     <div className={TaskExcerptStyles.taskExcerptContainer}>
       <div className={TaskExcerptStyles.taskExcerptTop}>
@@ -111,7 +97,6 @@ const TaskExcerpt = ({
             style={{ backgroundColor: taskPriority.color }}
           />
           {taskPriority.name}
-
           {task.createdBy !== user?._id && (
             <div className={TaskExcerptStyles.taskExcerptUserAvatar}>
               {trimName(user?.name)}
@@ -127,18 +112,8 @@ const TaskExcerpt = ({
           </button>
           {showOptions && (
             <div className={TaskExcerptStyles.taskExcerptTopOptionsDropdown}>
-              <button
-                onClick={(e) => handleEditTask(e)}
-                className={TaskExcerptStyles.edit__task__button}
-              >
-                Edit
-              </button>
-              <button
-                onClick={(e) => handleShare(e)}
-                className={TaskExcerptStyles.share__task__button}
-              >
-                Share
-              </button>
+              <button onClick={(e) => handleEditTask(e)}>Edit</button>
+              <button onClick={(e) => handleShare(e)}>Share</button>
               <button
                 onClick={(e) => handleDeleteTask(e)}
                 className={TaskExcerptStyles.deleteTaskButton}
@@ -158,7 +133,6 @@ const TaskExcerpt = ({
             Checklist{" "}
             <span>{`(${checkedItemsCount}/${totalChecklistItems})`}</span>
           </label>
-
           <button onClick={() => setShowChecklist(!showChecklist)}>
             <img
               src={showChecklist ? upArrow : downArrow}
@@ -166,26 +140,23 @@ const TaskExcerpt = ({
             />
           </button>
         </div>
-
         {showChecklist && (
           <div className={TaskExcerptStyles.taskExcerptChecklistItems}>
-            {task.checklist.map((item) => {
-              return (
-                <div
-                  key={`${item.itemId},${item.title}`}
-                  className={TaskExcerptStyles.taskExcerptChecklistItem}
-                >
-                  <input
-                    type="checkbox"
-                    checked={item.checked}
-                    onChange={(e) =>
-                      handleCheckBoxChange(item.itemId, e.target.checked)
-                    }
-                  />
-                  <span>{item.text}</span>
-                </div>
-              );
-            })}
+            {task.checklist.map((item) => (
+              <div
+                key={`${item.itemId},${item.title}`}
+                className={TaskExcerptStyles.taskExcerptChecklistItem}
+              >
+                <input
+                  type="checkbox"
+                  checked={item.checked}
+                  onChange={(e) =>
+                    handleCheckBoxChange(item.itemId, e.target.checked)
+                  }
+                />
+                <span>{item.text}</span>
+              </div>
+            ))}
           </div>
         )}
       </div>
@@ -202,7 +173,7 @@ const TaskExcerpt = ({
                   : ""
               }`}
             >
-              {formatLocalDate(task.dueDate, " MMM dd")}
+              {formatLocalDate(task.dueDate, " MMM ddth")}
             </span>
           )}
         </div>
@@ -229,4 +200,28 @@ const TaskExcerpt = ({
     </div>
   );
 };
+
+TaskExcerpt.propTypes = {
+  task: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    priority: PropTypes.string.isRequired,
+    createdBy: PropTypes.string,
+    dueDate: PropTypes.string,
+    status: PropTypes.string,
+    checklist: PropTypes.arrayOf(
+      PropTypes.shape({
+        itemId: PropTypes.string.isRequired,
+        checked: PropTypes.bool.isRequired,
+        text: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
+  collapseAll: PropTypes.bool,
+  setMode: PropTypes.func.isRequired,
+  setTask: PropTypes.func.isRequired,
+  setIsAddEditTaskShown: PropTypes.func.isRequired,
+  setShowDeleteTask: PropTypes.func.isRequired,
+};
+
 export default TaskExcerpt;

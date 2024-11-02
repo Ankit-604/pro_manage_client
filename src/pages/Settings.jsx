@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import SettingStyles from "./stylesheets/Setting.module.css";
-import AuthLayoutStyles from "../layout/AuthLayout.module.css";
 import Form from "../components/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserDetails } from "../features/user/userSlice";
@@ -49,17 +48,18 @@ const Settings = () => {
     }
   }, [user]);
 
-  // Function to check if a field is valid and update error state
   const validateField = (fieldName, value) => {
     let isValid = false;
     switch (fieldName) {
-      case "name":
+      case "name": {
         isValid = value.trim().length > 2;
         break;
-      case "email":
+      }
+      case "email": {
         isValid = /\S+@\S+\.\S+/.test(value);
         break;
-      case "password":
+      }
+      case "password": {
         const isAlphanumeric = /^(?=.*[a-zA-Z])(?=.*\d).+$/.test(value);
         const isLengthValid = value.trim().length >= 8;
 
@@ -78,7 +78,8 @@ const Settings = () => {
         }
         isValid = isLengthValid && isAlphanumeric;
         break;
-      case "newPassword":
+      }
+      case "newPassword": {
         const isAlphanum = /^(?=.*[a-zA-Z])(?=.*\d).+$/.test(value);
         const isLenVal = value.trim().length >= 8;
 
@@ -108,7 +109,7 @@ const Settings = () => {
         }
         isValid = isLenVal && isAlphanum && value !== formData.password;
         break;
-
+      }
       default:
         break;
     }
@@ -175,7 +176,6 @@ const Settings = () => {
     e.preventDefault();
     let isError = false;
 
-    // Validating all fields before submitting
     Object.keys(formData).forEach((key) => {
       if (formData[key]) {
         const isValid = validateField(key, formData[key]);

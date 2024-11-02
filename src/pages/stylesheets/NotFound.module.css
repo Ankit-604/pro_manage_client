@@ -33,3 +33,21 @@
   margin: 25px 0;
   text-align: center;
 }
+
+.homeButton {
+  padding: 12px 24px;
+  border: none;
+  background-color: #fc7a63;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  color: black;
+}
+
+.homeButton:hover {
+  background-color: #c52914;
+  transform: scale(1.05);
+}

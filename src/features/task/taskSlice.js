@@ -69,13 +69,11 @@ export const updateTask = createAsyncThunk(
   "task/updateTask",
   async ({ taskId, formData }, { rejectWithValue }) => {
     try {
-      console.log(taskId, formData);
       const response = await axios.put(
         `${backendUrl}/api/v1/task/update/${taskId}`,
         { ...formData },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
-      console.log(response.data);
       if (response?.data?.success) {
         return { taskId, message: response?.data?.message, formData };
       } else {
@@ -101,11 +99,11 @@ export const updateTask = createAsyncThunk(
 // addPeople to board
 export const addPeople = createAsyncThunk(
   "task/addPeople",
-  async ({ userEmail }, { rejectWithValue }) => {
+  async (user, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         `${backendUrl}/api/v1/task/addPeople`,
-        { userEmail },
+        { assignTo: user._id },
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -113,7 +111,10 @@ export const addPeople = createAsyncThunk(
           },
         }
       );
-      return response?.data;
+
+      if (response?.data?.success) {
+        return { ...user, message: response?.data?.message };
+      }
     } catch (error) {
       let errorMessage = "An unexpected error occurred";
       if (error.response) {
@@ -188,7 +189,6 @@ const taskSlice = createSlice({
       })
       .addCase(getTasks.fulfilled, (state, action) => {
         state.loading = false;
-        // state.success = action.payload.message;
         state.tasks = action.payload.data;
         state.error = null;
       })
@@ -279,11 +279,11 @@ const taskSlice = createSlice({
         state.success = action.payload.message;
 
         state.tasks = state.tasks.map((task) => {
-          if (task.createdBy !== action.payload.data) {
-            if (!task.assignTo.includes(action.payload.data)) {
+          if (task.createdBy !== action.payload._id) {
+            if (!task.assignTo.includes(action.payload._id)) {
               return {
                 ...task,
-                assignTo: [...task.assignTo, action.payload.data],
+                assignTo: [...task.assignTo, action.payload._id],
               };
             }
           }
