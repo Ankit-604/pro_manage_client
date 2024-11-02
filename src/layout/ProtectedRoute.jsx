@@ -9,7 +9,7 @@ import logout from "../assets/svg/logout.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetails } from "../features/user/userSlice";
 import { useEffect, useState } from "react";
-import Logout from "../components/LogoutDelete";
+import Logout from "../components/Logout";
 import { useHandleLogout } from "../utils";
 import { backToDefault, getTasks } from "../features/task/taskSlice";
 

@@ -5,7 +5,7 @@ import TaskSec from "./styles/TaskSec.module.css";
 import collapse from "../assets/svg/collapse-all.svg";
 import addTask from "../assets/svg/addTask.svg";
 import { useSelector } from "react-redux";
-import TaskExcerpt from "./TaskExcerpt";
+import TaskBox from "./TaskBox";
 import CardLoader from "./CardLoader";
 
 const TaskSection = ({
@@ -67,7 +67,7 @@ const TaskSection = ({
                 .filter((task) => task.status === section.value)
                 .map((task) => {
                   return (
-                    <TaskExcerpt
+                    <TaskBox
                       key={task._id}
                       task={task}
                       setMode={setMode}

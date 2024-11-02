@@ -1,4 +1,4 @@
-.taskExcerptContainer {
+.taskBoxContainer {
   position: relative;
   width: 100%;
   background-color: #ffffff;
@@ -9,12 +9,12 @@
   padding: 12px;
 }
 
-.taskExcerptTop {
+.taskBoxTop {
   display: flex;
   justify-content: space-between;
 }
 
-.taskExcerptPriority {
+.taskBoxPriority {
   display: flex;
   gap: 4px;
   align-items: center;
@@ -23,19 +23,19 @@
   text-align: left;
 }
 
-.taskExcerptPriorityColor {
+.taskBoxPriorityColor {
   border-radius: 100%;
   height: 7px;
   width: 7px;
 }
 
-.taskExcerptTopOptions > button {
+.taskBoxTopOptions > button {
   background-color: transparent;
   border: none;
   position: relative;
 }
 
-.taskExcerptTopOptionsDropdown {
+.taskBoxTopOptionsDropdown {
   z-index: 5;
   position: absolute;
   right: 8px;
@@ -51,7 +51,7 @@
   border-radius: 8px;
 }
 
-.taskExcerptTopOptionsDropdown > button {
+.taskBoxTopOptionsDropdown > button {
   width: 100%;
   height: 100%;
   border: none;
@@ -63,7 +63,7 @@
   padding-left: 4px;
   border-radius: 4px;
 }
-.taskExcerptTopOptionsDropdown > button:hover {
+.taskBoxTopOptionsDropdown > button:hover {
   background-color: #f5f5f5;
 }
 
@@ -71,7 +71,7 @@
   color: #ff0000;
 }
 
-.taskExcerptHeader {
+.taskBoxHeader {
   font-size: 16px;
   font-weight: 600;
   margin: 8px 0;
@@ -81,7 +81,7 @@
   transition: white-space 0.2s ease;
 }
 
-.taskExcerptUserAvatar {
+.taskBoxUserAvatar {
   font-size: 8px;
   height: 17px;
   width: 17px;
@@ -92,7 +92,7 @@
   align-items: center;
 }
 
-.taskExcerptChecklistHeader {
+.taskBoxChecklistHeader {
   box-sizing: border-box;
   padding: 0px 8px 0px 4px;
   display: flex;
@@ -103,7 +103,7 @@
   text-align: left;
 }
 
-.taskExcerptChecklistHeader > button {
+.taskBoxChecklistHeader > button {
   background-color: #e2e2e2;
   border: none;
   height: 20px;
@@ -111,16 +111,16 @@
   border-radius: 3px;
 }
 
-.taskExcerptChecklistHeader > button img {
+.taskBoxChecklistHeader > button img {
   width: 100%;
   height: 100%;
 }
-.taskExcerptChecklistItems {
+.taskBoxChecklistItems {
   margin: 8px 0;
   padding: 0px 4px;
   box-sizing: border-box;
 }
-.taskExcerptChecklistItem {
+.taskBoxChecklistItem {
   padding: 8px;
   display: flex;
   align-items: center;
@@ -131,12 +131,12 @@
   white-space: normal;
 }
 
-.taskExcerptChecklistItem input[type="checkbox"] {
+.taskBoxChecklistItem input[type="checkbox"] {
   width: 17px;
   height: 17px;
   cursor: pointer;
 }
-.taskExcerptChecklistItem > span {
+.taskBoxChecklistItem > span {
   display: flex;
   align-items: center;
   height: 100%;
@@ -148,11 +148,11 @@
   text-align: left;
 }
 
-.taskExcerptChecklistItem input[type="checkbox"]:checked {
+.taskBoxChecklistItem input[type="checkbox"]:checked {
   accent-color: #17a2b8;
 }
 
-.taskExcerptLoading {
+.taskBoxLoading {
   position: absolute;
   top: 0;
   left: 0;
@@ -165,24 +165,24 @@
   z-index: 10;
 }
 
-.taskExcerptLoading .loader {
+.taskBoxLoading .loader {
   color: #17a2b8;
 }
 
-.taskExcerptBottom {
+.taskBoxBottom {
   margin-top: 8px;
   display: grid;
   grid-template-columns: 100px 1fr;
 }
 
-.taskExcerptButton {
+.taskBoxButton {
   justify-content: end;
   padding-right: 5px;
   display: flex;
   gap: 5px;
   align-items: center;
 }
-.taskExcerptButtonItem {
+.taskBoxButtonItem {
   text-transform: uppercase;
   background-color: #eeecec;
   padding: 4px 6px;
@@ -193,7 +193,7 @@
   line-height: 12px;
 }
 
-.taskExcerptBottomDate {
+.taskBoxBottomDate {
   font-size: 8px;
   font-weight: 500;
   line-height: 12px;
@@ -204,12 +204,12 @@
   margin-left: 8px;
 }
 
-.taskExcerptBottomDateHigh {
+.taskBoxBottomDateHigh {
   background-color: #cf3636 !important;
   color: #ffffff;
 }
 
-.taskExcerptBottomDateDone {
+.taskBoxBottomDateDone {
   background-color: #63c05b !important;
   color: #ffffff;
 }

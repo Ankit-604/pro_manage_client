@@ -1,4 +1,4 @@
-.userSearchExcerpt__container {
+.userSearchContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -8,13 +8,13 @@
   margin-bottom: 5px;
 }
 
-.userSearchExcerpt__container > .user {
+.userSearchContainer > .user {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 15px;
 }
-.user__avatar {
+.userAvatar {
   width: 25px;
   height: 25px;
   border-radius: 50%;

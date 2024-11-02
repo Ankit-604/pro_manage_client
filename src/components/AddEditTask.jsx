@@ -5,7 +5,7 @@ import deleteIcon from "../assets/svg/delete.svg";
 
 import Loading from "./Loading";
 import toast from "react-hot-toast";
-import UserSearchExcerpt from "./UserSearchExcerpt";
+import UserSearch from "./UserSearch";
 import Calendar from "./Calendar";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
@@ -214,7 +214,7 @@ const AddEditTask = ({
           {!!task &&
           (task?.assignTo?.includes(user._id) ||
             !task?.createdBy === user._id) ? (
-            <UserSearchExcerpt user={user} />
+            <UserSearch user={user} />
           ) : (
             <div className={AddEditTaskStyles.addTaskBoxAssigneeContainer}>
               <Searcher setUser={handleSetAssignee} task={task} data={data} />

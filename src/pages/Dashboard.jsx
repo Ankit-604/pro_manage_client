@@ -14,7 +14,7 @@ import {
 } from "../features/task/taskSlice";
 import AddEditTask from "./../components/AddEditTask";
 import toast from "react-hot-toast";
-import Delete from "../components/LogoutDelete";
+import Delete from "../components/Logout";
 import AddPeople from "../components/AddPeople";
 import TaskSection from "../components/TaskSec";
 import Loading from "../components/Loading";

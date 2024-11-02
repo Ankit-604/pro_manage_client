@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import SearcherStyles from "./styles/Searcher.module.css";
-import UserSearchExcerpt from "./UserSearchExcerpt";
+import UserSearch from "./UserSearch";
 import uparrow from "../assets/svg/up-arrow.svg";
 import downarrow from "../assets/svg/down-arrow.svg";
 import Loading from "./Loading";
@@ -126,7 +126,7 @@ const Search = ({ setUser, task = null, data }) => {
             searchUserResults.map((user) => (
               <div key={user._id} className={SearcherStyles.searcherListItem}>
                 <div className={SearcherStyles.searcherListItemAvatar}>
-                  <UserSearchExcerpt user={user} />
+                  <UserSearch user={user} />
                 </div>
                 <div className={SearcherStyles.searcherListItemButtons}>
                   <button

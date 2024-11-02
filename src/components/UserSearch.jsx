@@ -1,18 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { trimName } from "../utils";
-import UserSearchExcerptStyles from "./styles/UserSearchExcerpt.module.css";
+import UserSearchStyles from "./styles/UserSearch.module.css";
 
 const UserSearchExcerpt = ({ user, onSelect }) => {
   return (
     <div
-      className={UserSearchExcerptStyles.userSearchExcerpt__container}
+      className={UserSearchStyles.userSearchContainer}
       onClick={() => onSelect(user)}
     >
-      <div className={UserSearchExcerptStyles.user}>
-        <div className={UserSearchExcerptStyles.user__avatar}>
-          {trimName(user.name)}
-        </div>
+      <div className={UserSearchStyles.user}>
+        <div className={UserSearchStyles.userAvatar}>{trimName(user.name)}</div>
         <div>{user.email}</div>
       </div>
     </div>

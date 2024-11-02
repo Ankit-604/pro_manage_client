@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import TaskExcerptStyles from "./styles/TaskExcerpt.module.css";
+import TaskBoxStyles from "./styles/TaskBox.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import dots from "../assets/svg/dot.svg";
@@ -10,7 +10,7 @@ import { updateTask } from "../features/task/taskSlice";
 import Loading from "./Loading";
 import { toast } from "react-hot-toast";
 
-const TaskExcerpt = ({
+const TaskBox = ({
   task,
   collapseAll,
   setMode,
@@ -89,34 +89,31 @@ const TaskExcerpt = ({
   }, []);
 
   return (
-    <div className={TaskExcerptStyles.taskExcerptContainer}>
-      <div className={TaskExcerptStyles.taskExcerptTop}>
-        <div className={TaskExcerptStyles.taskExcerptPriority}>
+    <div className={TaskBoxStyles.taskBoxContainer}>
+      <div className={TaskBoxStyles.taskBoxTop}>
+        <div className={TaskBoxStyles.taskBoxPriority}>
           <div
-            className={TaskExcerptStyles.taskExcerptPriorityColor}
+            className={TaskBoxStyles.taskBoxPriorityColor}
             style={{ backgroundColor: taskPriority.color }}
           />
           {taskPriority.name}
           {task.createdBy !== user?._id && (
-            <div className={TaskExcerptStyles.taskExcerptUserAvatar}>
+            <div className={TaskBoxStyles.taskBoxUserAvatar}>
               {trimName(user?.name)}
             </div>
           )}
         </div>
-        <div
-          className={TaskExcerptStyles.taskExcerptTopOptions}
-          ref={optionRef}
-        >
+        <div className={TaskBoxStyles.taskBoxTopOptions} ref={optionRef}>
           <button title="options" onClick={() => setShowOptions(!showOptions)}>
             <img src={dots} alt="..." />
           </button>
           {showOptions && (
-            <div className={TaskExcerptStyles.taskExcerptTopOptionsDropdown}>
+            <div className={TaskBoxStyles.taskBoxTopOptionsDropdown}>
               <button onClick={(e) => handleEditTask(e)}>Edit</button>
               <button onClick={(e) => handleShare(e)}>Share</button>
               <button
                 onClick={(e) => handleDeleteTask(e)}
-                className={TaskExcerptStyles.deleteTaskButton}
+                className={TaskBoxStyles.deleteTaskButton}
               >
                 Delete
               </button>
@@ -124,11 +121,11 @@ const TaskExcerpt = ({
           )}
         </div>
       </div>
-      <div title={task?.title} className={TaskExcerptStyles.taskExcerptHeader}>
+      <div title={task?.title} className={TaskBoxStyles.taskBoxHeader}>
         {task?.title}
       </div>
-      <div className={TaskExcerptStyles.taskExcerpt__checklist}>
-        <div className={TaskExcerptStyles.taskExcerptChecklistHeader}>
+      <div className={TaskBoxStyles.taskBox__checklist}>
+        <div className={TaskBoxStyles.taskBoxChecklistHeader}>
           <label htmlFor="checklist">
             Checklist{" "}
             <span>{`(${checkedItemsCount}/${totalChecklistItems})`}</span>
@@ -141,11 +138,11 @@ const TaskExcerpt = ({
           </button>
         </div>
         {showChecklist && (
-          <div className={TaskExcerptStyles.taskExcerptChecklistItems}>
+          <div className={TaskBoxStyles.taskBoxChecklistItems}>
             {task.checklist.map((item) => (
               <div
                 key={`${item.itemId},${item.title}`}
-                className={TaskExcerptStyles.taskExcerptChecklistItem}
+                className={TaskBoxStyles.taskBoxChecklistItem}
               >
                 <input
                   type="checkbox"
@@ -160,16 +157,16 @@ const TaskExcerpt = ({
           </div>
         )}
       </div>
-      <div className={TaskExcerptStyles.taskExcerptBottom}>
+      <div className={TaskBoxStyles.taskBoxBottom}>
         <div>
           {task.dueDate && (
             <span
-              className={`${TaskExcerptStyles.taskExcerptBottomDate} ${
+              className={`${TaskBoxStyles.taskBoxBottomDate} ${
                 task.status === "done"
-                  ? TaskExcerptStyles.taskExcerptBottomDateDone
+                  ? TaskBoxStyles.taskBoxBottomDateDone
                   : formatLocalDate(task.dueDate) <
                       formatLocalDate(Date.now()) || task.priority === "high"
-                  ? TaskExcerptStyles.taskExcerptBottomDateHigh
+                  ? TaskBoxStyles.taskBoxBottomDateHigh
                   : ""
               }`}
             >
@@ -177,13 +174,13 @@ const TaskExcerpt = ({
             </span>
           )}
         </div>
-        <div className={TaskExcerptStyles.taskExcerptButton}>
+        <div className={TaskBoxStyles.taskBoxButton}>
           {sections.map(
             (section) =>
               task.status !== section.value && (
                 <button
                   key={section.value}
-                  className={TaskExcerptStyles.taskExcerptButtonItem}
+                  className={TaskBoxStyles.taskBoxButtonItem}
                   onClick={() => handleStatusChange(section.value)}
                 >
                   {section.name}
@@ -193,7 +190,7 @@ const TaskExcerpt = ({
         </div>
       </div>
       {loading && (
-        <div className={TaskExcerptStyles.taskExcerptLoading}>
+        <div className={TaskBoxStyles.taskBoxLoading}>
           <Loading />
         </div>
       )}
@@ -201,7 +198,7 @@ const TaskExcerpt = ({
   );
 };
 
-TaskExcerpt.propTypes = {
+TaskBox.propTypes = {
   task: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     title: PropTypes.string,
@@ -224,4 +221,4 @@ TaskExcerpt.propTypes = {
   setShowDeleteTask: PropTypes.func.isRequired,
 };
 
-export default TaskExcerpt;
+export default TaskBox;
